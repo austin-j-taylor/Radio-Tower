@@ -25,7 +25,7 @@ public class GlobalController : MonoBehaviour {
         _checkTime10 = 10f;
         _checkTime20 = 20f;
         _locations = new Location[4];
-        
+        CreateLocations();
         Debug.Log("Global Controller initialized.");
 	}
 	

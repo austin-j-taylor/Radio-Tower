@@ -16,8 +16,12 @@ public class UnitController : MonoBehaviour {
 	void Update () {
 		    
 	}
-    Transform GetClosestEnemy()
+    Transform GetClosestEnemy(Transform[] enemies)
     {
+        Transform tMin = null;
+        float minDist = Mathf.Infinity;
+
         return null;
+        //Vector2 currentpos = 
     }
 }
