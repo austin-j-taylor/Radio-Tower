@@ -16,6 +16,7 @@ public class Location {
         set 
         {
             _selected = value;
+            
             if (_selected == false)
             {
                 _threatUpTick = 5f;
@@ -63,21 +64,22 @@ public class Location {
     }
     // Use this for initialization
     void Start () {
-        _threatLevel = 0;
-        _threatDownTick = 20f;
-        _threatUpTick = 5f;
-        _selected = false;
-        _checkTimeEnemy = 20f;
-        Debug.Log(_title + " initialized. Selection status " + _selected);
+        
 	}
     public Location(string title, string friendlyType, string enemyType)
     {
         _title = title;
         _friendlyType = friendlyType;
         _enemyType = enemyType;
+        _threatLevel = 0;
+        _threatDownTick = 20f;
+        _threatUpTick = 5f;
+        _selected = false;
+        _checkTimeEnemy = 20f;
+        Debug.Log(_title + " initialized. Selection status " + _selected);
     }
 	// Update is called once per frame
-	void Update () {
+	public void Update () {
         //upticks threat level after 5 seconds
         if (_threatLevel >=.3)
         {
