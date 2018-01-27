@@ -11,8 +11,56 @@ public class GlobalController : MonoBehaviour {
     private int _broadcastLocation;
     private Location[] _locations;
     private List<UnitController> enemies, friendlies;
-	// Use this for initialization
-	void Start () {
+    public int Wood {
+        get
+        {
+            return _wood;
+        }
+    }
+    public int Power
+    {
+        get
+        {
+            return _power;
+        }
+    }
+    public int Food
+    {
+        get
+        {
+            return _food;
+        }
+    }
+    public int NumElectr
+    {
+        get
+        {
+            return _numElectr;
+        }
+    }
+    public int NumScav
+    {
+        get
+        {
+            return _numScav;
+        }
+    }
+    public int NumBuild
+    {
+        get
+        {
+            return _numBuild;
+        }
+    }
+    public int NumLogger
+    {
+        get
+        {
+            return _numLogger;
+        }
+    }
+    // Use this for initialization
+    void Start () {
         //instantiate private variables
         _wood = 0;
         _power = 0;
@@ -131,5 +179,9 @@ public class GlobalController : MonoBehaviour {
         _locations[3] = forest;
         _locations[4] = construction;
         _locations[0] = null;
+    }
+    public Location GetLocation()
+    {
+        return _locations[_broadcastLocation];
     }
 }
