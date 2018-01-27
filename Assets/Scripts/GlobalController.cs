@@ -35,21 +35,18 @@ public class GlobalController : MonoBehaviour {
         //when to perform checks for resource gathering, people joining, threat level rise/decay, etc.
         if (timeNow - _checkTime5 > 0)
         {
-            _checkTime5 = timeNow;
+            _checkTime5 = timeNow + 5;
             PerformCheck(5);
-            Debug.Log("Performing 5-second check");
         }
         else if(timeNow - _checkTime10 > 0)
         {
-            _checkTime10 = timeNow;
+            _checkTime10 = timeNow + 10;
             PerformCheck(10);
-            Debug.Log("Performing 10-second check");
         }
         else if(timeNow - _checkTime20 > 0)
         {
-            _checkTime20 = timeNow;
+            _checkTime20 = timeNow + 20;
             PerformCheck(20);
-            Debug.Log("Performing 20-second check");
         }
 	}
     void PerformCheck(int checkNum)
@@ -85,7 +82,7 @@ public class GlobalController : MonoBehaviour {
                 goto case 10; //yeah I'm using a goto, you wanna make something of it? Fallthroughs in C# being illegal is dumb.
             case 10:
                 _wood+=_numLogger;
-                Debug.Log("Increasing wood stores");
+                Debug.Log("Increasing wood stores. Total wood rests at "+_wood);
                 break;
             
         }
