@@ -70,7 +70,7 @@ public class Location : ScriptableObject {
         _checkTimeEnemy = 20f;
         Debug.Log(_title + " initialized. Selection status " + _selected);
 	}
-    public Location(string title, string friendlyType, string enemyType)
+    public void Init(string title, string friendlyType, string enemyType)
     {
         _title = title;
         _friendlyType = friendlyType;
