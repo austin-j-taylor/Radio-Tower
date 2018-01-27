@@ -5,19 +5,19 @@ using UnityEngine;
 public class GlobalController : MonoBehaviour {
     //initialization of variables
     private int wood, power, food;
-    private int numElectr, numScav, numBuild, numLumber;
+    private int numElectr, numScav, numBuild, numLogger;
     private float checkTime;
     private int maxChecks;
+    private Location broadcastLocation;
 	// Use this for initialization
 	void Start () {
         //instantiate private variables
         wood = 0;
         power = 0;
         food = 0;
-        //numbers of people
         numElectr = 0;
         numScav = 0;
-        numLumber = 0;
+        numLogger = 0;
         checkTime = 0f;
 	}
 	
@@ -45,22 +45,16 @@ public class GlobalController : MonoBehaviour {
         switch(checkNum)
         {
             //checks that exist: check for people increment. .3+.7*threat level every 5 seconds
-            //threat level uptick: 1% per 5 seconds
-            //threat level downtick: 1% per 20 seconds
             //woodgathering: +1*numLumber every 10 seconds
             case 5:
                 //TODO: Create individual threat level holders.
-                if(Random.value <= .3/*Threat level modifier goes here*/)
+                if(Random.value <= .3/* + threat level*.7 */)
                 {
                     //TODO: Uptick population based on current location
                 }
-                //TODO: Uptick threat level
                 goto case 10; //yeah I'm using a goto, you wanna make something of it? Fallthroughs in C# being illegal is dumb.
             case 10:
-                wood++;
-                goto case 20; //here we go again
-            case 20:
-                //TODO: Downtick threat level
+                wood+=numLogger;
                 break;
             
         }
