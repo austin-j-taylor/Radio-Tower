@@ -30,9 +30,10 @@ public class GlobalController : MonoBehaviour {
         CreateLocations();
         Debug.Log("Global Controller initialized.");
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         float timeChange = Time.deltaTime;
         float timeNow = Time.time;
         //when to perform checks for resource gathering, people joining, threat level rise/decay, etc.
@@ -46,12 +47,16 @@ public class GlobalController : MonoBehaviour {
             _checkTime5 = timeNow + 5;
             PerformCheck(5);
         }
-        if(timeNow - _checkTime20 > 0)
+        if (timeNow - _checkTime20 > 0)
         {
             _checkTime20 = timeNow + 20;
             PerformCheck(20);
         }
-	}
+        for(int x = 1; x < 5; x++)
+        {
+            _locations[x].Update();
+        }
+    }
     void PerformCheck(int checkNum)
     {
         if (checkNum == 5)
@@ -60,7 +65,7 @@ public class GlobalController : MonoBehaviour {
             float roll = Random.value;
             if (_locations[_broadcastLocation] != null && _food > 0 && roll <= .3 + (_locations[_broadcastLocation].ThreatLevel * .7) )
             {
-                Debug.Log("Successful roll for new population, roll was " + roll + " against a " + (.3 + (_locations[_broadcastLocation].ThreatLevel * .7)) /* 100*/ + " percent chance");
+                Debug.Log("Successful roll for new population, roll was " + roll*100 + " against a " + (.3 + (_locations[_broadcastLocation].ThreatLevel * .7))* 100 + " percent chance");
                 switch (_locations[_broadcastLocation].FriendlyType)
                 {
                     case "Logger":
@@ -85,11 +90,14 @@ public class GlobalController : MonoBehaviour {
                 _food--;
                 Debug.Log("Increasing wood stores. Total wood rests at " + _wood);
             }
+            else if(_locations[_broadcastLocation] != null)
+            {
+                Debug.Log("Failed RNG roll. Current threat level is "+_locations[_broadcastLocation].ThreatLevel*100+"%");
+            }
         }
         else if (checkNum == 10)
         {
             _wood += _numLogger;
-            _food--;
             Debug.Log("Increasing wood stores. Total wood rests at " + _wood);
         }      
     }
@@ -98,15 +106,18 @@ public class GlobalController : MonoBehaviour {
         if(_broadcastLocation == 0)
         {
             _locations[locationIndex].Selected = true;
+            _broadcastLocation = locationIndex;
         }
         else if(locationIndex == _broadcastLocation)
         {
             _locations[_broadcastLocation].Selected = false;
+            _broadcastLocation = 0;
         }
         else 
         {
             _locations[_broadcastLocation].Selected = false;
             _locations[locationIndex].Selected = true;
+            _broadcastLocation = locationIndex;
         }
     }
     void CreateLocations()
