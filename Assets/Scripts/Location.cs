@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Location : MonoBehaviour {
+public class Location {
     private string _title, _friendlyType, _enemyType;
-    private float _threatDownTick, _threatUpTick; 
+    private float _threatDownTick, _threatUpTick, _checkTimeEnemy, _spawnInterval; 
     private float _threatLevel;
     private bool _selected;
     
@@ -67,6 +67,7 @@ public class Location : MonoBehaviour {
         _threatDownTick = 20f;
         _threatUpTick = 5f;
         _selected = false;
+        _checkTimeEnemy = 20f;
         Debug.Log(_title + " initialized. Selection status " + _selected);
 	}
     public Location(string title, string friendlyType, string enemyType)
@@ -78,16 +79,26 @@ public class Location : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //upticks threat level after 5 seconds
-	    if(_selected)
+        if (_threatLevel >=.3)
+        {
+            _checkTimeEnemy -= Time.deltaTime;
+            if(Time.time - _checkTimeEnemy > 0)
+            {
+                SpawnEnemy();
+                _checkTimeEnemy = Time.time + Mathf.Lerp(3, 20, 1f - (ThreatLevel - .3f) / .7f);
+            }
+        }
+        if (_selected)
         {
             _threatUpTick -= Time.deltaTime;
-            if(_threatUpTick <= 0f && _threatLevel < 100)
+            if(_threatUpTick <= 0f && _threatLevel < 1)
             {
                 _threatUpTick = 5f;
                 _threatLevel += 0.01f;
                 Debug.Log(_title + " threat level has upticked");
             }
         }
+        
         //downticks threat level after 5 seconds
         else
         {
@@ -98,7 +109,10 @@ public class Location : MonoBehaviour {
                 _threatLevel -= 0.01f;
                 Debug.Log(_title + " threat level has downticked");
             }
-        }
-       
+        }  
 	}
+    void SpawnEnemy()
+    {
+
+    }
 }

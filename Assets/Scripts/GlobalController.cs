@@ -6,12 +6,11 @@ public class GlobalController : MonoBehaviour {
     //initialization of variables
     private int _wood, _power, _food;
     private int _numElectr, _numScav, _numBuild, _numLogger;
-    private float _checkTime5, _checkTime10, _checkTime20;
+    private float _checkTime5, _checkTime10, _checkTime20, _checkTimeEnemy;
     private int _maxChecks;
-    [SerializeField]
     private int _broadcastLocation;
-    [SerializeField]
     private Location[] _locations;
+    private List<UnitController> enemies, friendlies;
 	// Use this for initialization
 	void Start () {
         //instantiate private variables
@@ -24,7 +23,10 @@ public class GlobalController : MonoBehaviour {
         _checkTime5 = 5f;
         _checkTime10 = 10f;
         _checkTime20 = 20f;
+        _checkTimeEnemy = 20f;
         _locations = new Location[4];
+        enemies = new List<UnitController>();
+        friendlies = new List<UnitController>();
         CreateLocations();
         Debug.Log("Global Controller initialized.");
 	}
