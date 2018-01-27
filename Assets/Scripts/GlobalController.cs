@@ -90,7 +90,10 @@ public class GlobalController : MonoBehaviour {
     }
     void SelectLocation(int locationIndex)
     {
-        _locations[_broadcastLocation].Selected = false;
-        _locations[locationIndex].Selected = true;
+        if(_locations[locationIndex].Selected == false)
+        {
+            _locations[_broadcastLocation].Selected = false;
+            _locations[locationIndex].Selected = true;
+        }
     }
 }
