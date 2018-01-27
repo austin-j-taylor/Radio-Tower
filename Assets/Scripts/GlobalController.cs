@@ -88,7 +88,7 @@ public class GlobalController : MonoBehaviour {
             Debug.Log("Increasing wood stores. Total wood rests at " + _wood);
         }      
     }
-    void SelectLocation(int locationIndex)
+    public void SelectLocation(int locationIndex)
     {
         if(_locations[locationIndex].Selected == false)
         {
