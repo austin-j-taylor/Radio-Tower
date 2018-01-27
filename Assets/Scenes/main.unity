@@ -524,8 +524,9 @@ GameObject:
   m_Component:
   - component: {fileID: 201363698}
   - component: {fileID: 201363699}
+  - component: {fileID: 201363700}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: TextPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -563,6 +564,19 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 201363697}
+--- !u!114 &201363700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 201363697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344768862e4bd0243837119a5a17a8e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 1589625021}
+  textFields: []
 --- !u!1 &266722265
 GameObject:
   m_ObjectHideFlags: 0
@@ -2894,7 +2908,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: CONSTRUCTION
+  m_Text: 
 --- !u!222 &2116422151
 CanvasRenderer:
   m_ObjectHideFlags: 0
