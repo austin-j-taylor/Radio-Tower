@@ -95,7 +95,7 @@ public class GlobalController : MonoBehaviour {
     }
     public void SelectLocation(int locationIndex)
     {
-        if(_locations[locationIndex].Selected == false)
+        if (locationIndex != 0 && _locations[locationIndex].Selected == false)
         {
             _locations[_broadcastLocation].Selected = false;
             _locations[locationIndex].Selected = true;
