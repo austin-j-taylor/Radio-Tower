@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Location {
+public class Location : ScriptableObject {
     private string _title, _friendlyType, _enemyType;
     private float _threatDownTick, _threatUpTick, _checkTimeEnemy, _spawnInterval; 
     private float _threatLevel;
@@ -99,13 +99,13 @@ public class Location {
             }
         }
         
-        //downticks threat level after 5 seconds
+        //downticks threat level after 20 seconds
         else
         {
             _threatDownTick -= Time.deltaTime;
             if(_threatDownTick <= 0f && ThreatLevel>0)
             {
-                _threatDownTick = 10f;
+                _threatDownTick = 20f;
                 _threatLevel -= 0.01f;
                 Debug.Log(_title + " threat level has downticked");
             }
