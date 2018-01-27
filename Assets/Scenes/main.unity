@@ -144,6 +144,10 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1088864429}
+  - {fileID: 2027093127}
+  - {fileID: 783431610}
+  - {fileID: 1036960934}
+  - {fileID: 476599100}
   m_Father: {fileID: 45303048}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -586,7 +590,7 @@ MonoBehaviour:
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: _MARKET
 --- !u!222 &355945130
@@ -625,13 +629,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children:
   - {fileID: 527060633}
-  m_Father: {fileID: 1088864429}
-  m_RootOrder: 3
+  m_Father: {fileID: 40836215}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.07714285, y: 0.16700001}
   m_AnchorMax: {x: 0.22142856, y: 0.293}
-  m_AnchoredPosition: {x: 1.4999771, y: 0}
-  m_SizeDelta: {x: -1, y: 0}
+  m_AnchoredPosition: {x: 1.4999695, y: 0.000030517578}
+  m_SizeDelta: {x: -1, y: 0.0000076293945}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &476599101
 MonoBehaviour:
@@ -854,7 +858,7 @@ MonoBehaviour:
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: '_CONSTRUCTIoN
 
@@ -964,13 +968,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children:
   - {fileID: 1880965899}
-  m_Father: {fileID: 1088864429}
-  m_RootOrder: 1
+  m_Father: {fileID: 40836215}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5242858, y: 0.5402163}
   m_AnchorMax: {x: 0.67142856, y: 0.6677388}
-  m_AnchoredPosition: {x: 1.5, y: 0.5}
-  m_SizeDelta: {x: -3, y: -1}
+  m_AnchoredPosition: {x: 1.5, y: 0.5000301}
+  m_SizeDelta: {x: -3, y: -0.99998474}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &783431611
 MonoBehaviour:
@@ -1089,12 +1093,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children:
   - {fileID: 2050098297}
-  m_Father: {fileID: 1088864429}
-  m_RootOrder: 2
+  m_Father: {fileID: 40836215}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.81714296, y: 0.43952248}
   m_AnchorMax: {x: 0.96285725, y: 0.5645312}
-  m_AnchoredPosition: {x: 0.5, y: -1.5}
+  m_AnchoredPosition: {x: 0.5, y: -1.4999698}
   m_SizeDelta: {x: -2, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1036960935
@@ -1211,11 +1215,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
-  m_Children:
-  - {fileID: 2027093127}
-  - {fileID: 783431610}
-  - {fileID: 1036960934}
-  - {fileID: 476599100}
+  m_Children: []
   m_Father: {fileID: 40836215}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1536,8 +1536,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aff0ca69947ac7429dccb572eba7695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _broadcastLocation: 0
-  _locations: []
 --- !u!1 &1880965898
 GameObject:
   m_ObjectHideFlags: 0
@@ -1603,7 +1601,7 @@ MonoBehaviour:
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: '_TOWN
 
@@ -1739,13 +1737,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children:
   - {fileID: 355945128}
-  m_Father: {fileID: 1088864429}
-  m_RootOrder: 0
+  m_Father: {fileID: 40836215}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.22142856, y: 0.5645312}
   m_AnchorMax: {x: 0.3657143, y: 0.68753123}
-  m_AnchoredPosition: {x: 0.49998474, y: 0.33496094}
-  m_SizeDelta: {x: -1, y: 3}
+  m_AnchoredPosition: {x: 0.49998474, y: 0.33499146}
+  m_SizeDelta: {x: -1, y: 2.9999847}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2027093128
 MonoBehaviour:
@@ -1785,7 +1783,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2027093129}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2027093131}
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &2027093129
@@ -1899,7 +1908,7 @@ MonoBehaviour:
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: _FOREST
 --- !u!222 &2050098299

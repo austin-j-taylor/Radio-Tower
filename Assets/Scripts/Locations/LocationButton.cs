@@ -8,17 +8,15 @@ public class LocationButton : MonoBehaviour {
     public GlobalController controller;
 
     private Button button;
-    [HideInInspector]
     public int location;
 
 	void Start () {
         button = GetComponent<Button>();
         button.onClick.AddListener(OnClick);
-	}
+    }
 
-    void OnClick() {
+    public void OnClick() {
         controller.SelectLocation(location);
-        Debug.Log("setting " + location);
     }
 
     public void SetLocation(int loc) {
