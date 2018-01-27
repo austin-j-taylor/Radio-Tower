@@ -39,17 +39,17 @@ public class GlobalController : MonoBehaviour {
             PerformCheck(5);
             Debug.Log("Performing 5-second check");
         }
-        else if(timeNow * 2 - _checkTime10 > 0)
+        else if(timeNow - _checkTime10 > 0)
         {
             _checkTime10 = timeNow;
             PerformCheck(10);
             Debug.Log("Performing 10-second check");
         }
-        else if(timeNow * 4 - _checkTime20 > 0)
+        else if(timeNow - _checkTime20 > 0)
         {
             _checkTime20 = timeNow;
             PerformCheck(20);
-            Debug.Log("performing 20-second check");
+            Debug.Log("Performing 20-second check");
         }
 	}
     void PerformCheck(int checkNum)
