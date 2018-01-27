@@ -70,7 +70,7 @@ public class Location : MonoBehaviour {
         _threatDownTick = 20f;
         _threatUpTick = 5f;
         _selected = false;
-        Debug.Log(name + " initialized. Selection status " + _selected);
+        Debug.Log(_title + " initialized. Selection status " + _selected);
 	}
 	
 	// Update is called once per frame
@@ -83,7 +83,7 @@ public class Location : MonoBehaviour {
             {
                 _threatUpTick = 5f;
                 _threatLevel += 0.01f;
-                Debug.Log(name + " threat level has upticked");
+                Debug.Log(_title + " threat level has upticked");
             }
         }
         //downticks threat level after 5 seconds
@@ -94,7 +94,7 @@ public class Location : MonoBehaviour {
             {
                 _threatDownTick = 10f;
                 _threatLevel -= 0.01f;
-                Debug.Log(name + " threat level has downticked");
+                Debug.Log(_title + " threat level has downticked");
             }
         }
        
