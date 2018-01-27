@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class LocationButton : MonoBehaviour {
 
     public Location location;
+    public GlobalController controller;
 
     private Button button;
 
@@ -16,6 +17,6 @@ public class LocationButton : MonoBehaviour {
 	}
 	
 	void OnClick() {
-
+        //controller set location mine
     }
 }
