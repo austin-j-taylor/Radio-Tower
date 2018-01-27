@@ -7,14 +7,17 @@ public class MacroMapController : MonoBehaviour {
 
     private Animator anim;
     private bool isIn;
-    public Button[] buttons;
+    public LocationButton[] buttons;
 
 	// Use this for initialization
 	void Start () {
         anim = GetComponent<Animator>();
         isIn = true;
         anim.SetBool("IsIn", isIn);
-        buttons = GetComponentsInChildren<Button>();
+        buttons = GetComponentsInChildren<LocationButton>();
+        for(int i = 0; i < buttons.Length; i++) {
+            buttons[i].SetLocation(i);
+        }
 	}
 	
 	// Update is called once per frame
