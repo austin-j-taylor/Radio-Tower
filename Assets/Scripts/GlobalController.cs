@@ -9,7 +9,7 @@ public class GlobalController : MonoBehaviour {
     private float _checkTime5, _checkTime10, _checkTime20;
     private int _maxChecks;
     [SerializeField]
-    private Location _broadcastLocation;
+    private int _broadcastLocation;
     [SerializeField]
     private Location[] _locations;
 	// Use this for initialization
@@ -33,17 +33,17 @@ public class GlobalController : MonoBehaviour {
         float timeChange = Time.deltaTime;
         float timeNow = Time.time;
         //when to perform checks for resource gathering, people joining, threat level rise/decay, etc.
+        if (timeNow - _checkTime10 > 0)
+        {
+            _checkTime10 = timeNow + 10;
+            PerformCheck(10);
+        }
         if (timeNow - _checkTime5 > 0)
         {
             _checkTime5 = timeNow + 5;
             PerformCheck(5);
         }
-        else if(timeNow - _checkTime10 > 0)
-        {
-            _checkTime10 = timeNow + 10;
-            PerformCheck(10);
-        }
-        else if(timeNow - _checkTime20 > 0)
+        if(timeNow - _checkTime20 > 0)
         {
             _checkTime20 = timeNow + 20;
             PerformCheck(20);
@@ -55,10 +55,10 @@ public class GlobalController : MonoBehaviour {
         {
             //Roll chance to gain more population and update population numbers.
             float roll = Random.value;
-            if (_food > 0 && roll <= .3 + (_broadcastLocation.ThreatLevel * .7))
+            if (_locations[_broadcastLocation] != null && _food > 0 && roll <= .3 + (_locations[_broadcastLocation].ThreatLevel * .7) )
             {
-                Debug.Log("Successful roll for new population, roll was " + roll + " against a " + (.3 + (_broadcastLocation.ThreatLevel * .7)) * 100 + " percent chance");
-                switch (_broadcastLocation.FriendlyType)
+                Debug.Log("Successful roll for new population, roll was " + roll + " against a " + (.3 + (_locations[_broadcastLocation].ThreatLevel * .7)) /* 100*/ + " percent chance");
+                switch (_locations[_broadcastLocation].FriendlyType)
                 {
                     case "Logger":
                         _numLogger++;
@@ -77,14 +77,20 @@ public class GlobalController : MonoBehaviour {
                         Debug.Log("Adding builder to population count.");
                         break;
                 }
-                _wood += _numLogger;
+                _food--;
                 Debug.Log("Increasing wood stores. Total wood rests at " + _wood);
             }
         }
         else if (checkNum == 10)
         {
             _wood += _numLogger;
+            _food--;
             Debug.Log("Increasing wood stores. Total wood rests at " + _wood);
         }      
+    }
+    void SelectLocation(int locationIndex)
+    {
+        _locations[_broadcastLocation].Selected = false;
+        _locations[locationIndex].Selected = true;
     }
 }

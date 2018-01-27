@@ -69,7 +69,7 @@ public class Location : MonoBehaviour {
         _threatLevel = 0;
         _threatDownTick = 20f;
         _threatUpTick = 5f;
-        _selected = false;
+        _selected = true;
         Debug.Log(_title + " initialized. Selection status " + _selected);
 	}
 	
