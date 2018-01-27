@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Location : MonoBehaviour {
-    [SerializeField]
     private string _title, _friendlyType, _enemyType;
     private float _threatDownTick, _threatUpTick; 
-    [SerializeField]
     private float _threatLevel;
-    [SerializeField]
     private bool _selected;
     
     //getters and setters
@@ -69,10 +66,15 @@ public class Location : MonoBehaviour {
         _threatLevel = 0;
         _threatDownTick = 20f;
         _threatUpTick = 5f;
-        _selected = true;
+        _selected = false;
         Debug.Log(_title + " initialized. Selection status " + _selected);
 	}
-	
+    public Location(string title, string friendlyType, string enemyType)
+    {
+        _title = title;
+        _friendlyType = friendlyType;
+        _enemyType = enemyType;
+    }
 	// Update is called once per frame
 	void Update () {
         //upticks threat level after 5 seconds

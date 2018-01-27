@@ -14,6 +14,10 @@ public class UnitController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		    
 	}
+    Transform GetClosestEnemy()
+    {
+        return null;
+    }
 }
