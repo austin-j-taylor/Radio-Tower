@@ -15,8 +15,8 @@ public class MacroMapController : MonoBehaviour {
         isIn = true;
         anim.SetBool("IsIn", isIn);
         buttons = GetComponentsInChildren<LocationButton>();
-        for(int i = 0; i < buttons.Length; i++) {
-            buttons[i].SetLocation(i);
+        for(int i = 1; i <= buttons.Length; i++) {
+            buttons[i - 1].SetLocation(i);
         }
 	}
 	

@@ -17,6 +17,7 @@ public class LocationButton : MonoBehaviour {
 
     public void OnClick() {
         controller.SelectLocation(location);
+        Debug.Log("setting " + location);
     }
 
     public void SetLocation(int loc) {
