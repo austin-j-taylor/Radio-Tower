@@ -12,8 +12,8 @@ public class Location : MonoBehaviour {
     private bool _selected;
     
     //getters and setters
-    public bool selected
-    {
+    public bool Selected
+    {   
         //reset timers on location selection change
         get { return _selected; }
         set 
@@ -22,16 +22,16 @@ public class Location : MonoBehaviour {
             if (_selected == false)
             {
                 _threatUpTick = 5f;
-                Debug.Log(title+" has been deselected! Resetting its uptick timer.");
+                Debug.Log(_title+" has been deselected! Resetting its uptick timer.");
             }
             else
             {
                 _threatDownTick = 10f;
-                Debug.Log(title + " has been deselected! Resetting its downtick timer.");
+                Debug.Log(_title + " has been selected! Resetting its downtick timer.");
             }
         }
     }
-    public float threatLevel
+    public float ThreatLevel
     {
         get { return _threatLevel; }
         set
@@ -39,7 +39,7 @@ public class Location : MonoBehaviour {
             _threatLevel = value;
         }
     }
-    public string title
+    public string Title
     {
         get
         {
@@ -50,14 +50,14 @@ public class Location : MonoBehaviour {
             _title = value;
         }
     }
-    public string friendlyType
+    public string FriendlyType
     {
         get
         {
             return _friendlyType;
         }
     }
-    public string enemyType
+    public string EnemyType
     {
         get
         {
@@ -70,6 +70,7 @@ public class Location : MonoBehaviour {
         _threatDownTick = 20f;
         _threatUpTick = 5f;
         _selected = false;
+        Debug.Log(name + " initialized. Selection status " + _selected);
 	}
 	
 	// Update is called once per frame
@@ -78,7 +79,7 @@ public class Location : MonoBehaviour {
 	    if(_selected)
         {
             _threatUpTick -= Time.deltaTime;
-            if(_threatUpTick <= 0f)
+            if(_threatUpTick <= 0f && _threatLevel < 100)
             {
                 _threatUpTick = 5f;
                 _threatLevel += 0.01f;
@@ -89,7 +90,7 @@ public class Location : MonoBehaviour {
         else
         {
             _threatDownTick -= Time.deltaTime;
-            if(_threatDownTick <= 0f)
+            if(_threatDownTick <= 0f && ThreatLevel>0)
             {
                 _threatDownTick = 10f;
                 _threatLevel -= 0.01f;

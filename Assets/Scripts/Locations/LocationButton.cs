@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class LocationButton : MonoBehaviour {
 
+    public Location location;
+
     private Button button;
 
 	// Use this for initialization
