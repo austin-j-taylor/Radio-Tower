@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Location : MonoBehaviour {
-    private int threatLevel;
+    
     private string title, friendlyType, enemyType;
     private float threatDownTick, threatUpTick;
     private bool selected
