@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class LocationButton : MonoBehaviour {
 
-    public Location location;
+    public int location;
     public GlobalController controller;
 
     private Button button;
@@ -17,6 +17,7 @@ public class LocationButton : MonoBehaviour {
 	}
 	
 	void OnClick() {
-        //controller set location mine
+        controller.SelectLocation(location);
+        Debug.Log("now targeting location " + location);
     }
 }
