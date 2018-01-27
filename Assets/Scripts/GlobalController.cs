@@ -6,10 +6,12 @@ public class GlobalController : MonoBehaviour {
     //initialization of variables
     private int _wood, _power, _food;
     private int _numElectr, _numScav, _numBuild, _numLogger;
-    private float _checkTime;
+    private float _checkTime5, _checkTime10, _checkTime20;
     private int _maxChecks;
     [SerializeField]
     private Location _broadcastLocation;
+    [SerializeField]
+    private Location[] _locations;
 	// Use this for initialization
 	void Start () {
         //instantiate private variables
@@ -19,28 +21,35 @@ public class GlobalController : MonoBehaviour {
         _numElectr = 0;
         _numScav = 0;
         _numLogger = 0;
-        _checkTime = 0f;
+        _checkTime5 = 5f;
+        _checkTime10 = 10f;
+        _checkTime20 = 20f;
+        _locations = new Location[4];
+        Debug.Log("Global Controller initialized.");
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        _checkTime += Time.deltaTime;
+        float timeChange = Time.deltaTime;
+        float timeNow = Time.time;
         //when to perform checks for resource gathering, people joining, threat level rise/decay, etc.
-        if(_checkTime % 5 == 0)
+        if (timeNow - _checkTime5 > 0)
         {
+            _checkTime5 = timeNow;
             PerformCheck(5);
             Debug.Log("Performing 5-second check");
         }
-        else if(_checkTime % 10 == 0)
+        else if(timeNow * 2 - _checkTime10 > 0)
         {
+            _checkTime10 = timeNow;
             PerformCheck(10);
             Debug.Log("Performing 10-second check");
         }
-        else if(_checkTime % 20 == 0)
+        else if(timeNow * 4 - _checkTime20 > 0)
         {
+            _checkTime20 = timeNow;
             PerformCheck(20);
-            _checkTime = 0;
-            Debug.Log("performing 20-second check, resetting timer.");
+            Debug.Log("performing 20-second check");
         }
 	}
     void PerformCheck(int checkNum)
@@ -50,10 +59,10 @@ public class GlobalController : MonoBehaviour {
             case 5:
                 //Roll chance to gain more population and update population numbers.
                 float roll = Random.value;
-                if (_food > 0 && roll <= .3 + (_broadcastLocation.threatLevel * .7))
+                if (_food > 0 && roll <= .3 + (_broadcastLocation.ThreatLevel * .7))
                 {
-                    Debug.Log("Successful roll for new population, roll was " + roll + " against a " + (.3 + (_broadcastLocation.threatLevel * .7))*100 + " percent chance");
-                    switch(_broadcastLocation.friendlyType)
+                    Debug.Log("Successful roll for new population, roll was " + roll + " against a " + (.3 + (_broadcastLocation.ThreatLevel * .7))*100 + " percent chance");
+                    switch(_broadcastLocation.FriendlyType)
                     {
                         case "Logger":
                             _numLogger++;
