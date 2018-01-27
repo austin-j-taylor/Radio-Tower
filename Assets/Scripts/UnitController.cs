@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class UnitController : MonoBehaviour {
-    private string _unitType;
-    private int _damageValue, _healthValue;
-    private float _attackSpeed, _speedValue, _rangeValue;
-    bool _friendly;
+    protected string _unitType;
+    protected int _damageValue, _healthValue;
+    protected float _attackSpeed, _speedValue, _rangeValue;
 	// Use this for initialization
 	void Start () {
 		
@@ -16,25 +15,13 @@ public class UnitController : MonoBehaviour {
 	void Update () {
 		    
 	}
-    public UnitController()
+    public UnitController(string unitType, int damageValue, int healthValue, int attackSpeed, int speedValue, int rangeValue) 
     {
-
-    }
-    Transform GetClosestEnemy(Transform enemies)
-    {
-        Transform tMin = null;
-        float minDist = Mathf.Infinity;
-        Vector2 currentpos = transform.position;
-        foreach(Transform t in enemies)
-        {
-            float dist = Vector2.Distance(t.position, currentpos);
-            if(dist<minDist)
-            {
-                tMin = t;
-                minDist = dist;
-            }
-        }
-        return tMin;
-        
+        _unitType = unitType;
+        _damageValue = damageValue;
+        _healthValue = healthValue;
+        _attackSpeed = attackSpeed;
+        _speedValue = speedValue;
+        _rangeValue = rangeValue;
     }
 }

@@ -10,7 +10,8 @@ public class GlobalController : MonoBehaviour {
     private int _maxChecks;
     private int _broadcastLocation;
     private Location[] _locations;
-    private List<UnitController> enemies, friendlies;
+    public List<EnemyController> _enemies;
+    public List<CivilianController> _friendlies;
     public int Wood {
         get
         {
@@ -59,12 +60,36 @@ public class GlobalController : MonoBehaviour {
             return _numLogger;
         }
     }
+    public List<EnemyController> Enemies
+    {
+        get
+        {
+            return _enemies;
+        }
+        set
+        {
+            _enemies = value;
+        }
+    }
+    public List<CivilianController> Friendlies
+    {
+        get
+        {
+            return _friendlies;
+        }
+        set
+        {
+            _friendlies = value;
+        }
+    }
+        
+
     // Use this for initialization
     void Start () {
         //instantiate private variables
         _wood = 0;
         _power = 0;
-        _food = 10;
+        _food = 0;
         _numElectr = 0;
         _numScav = 0;
         _numLogger = 0;
@@ -72,8 +97,8 @@ public class GlobalController : MonoBehaviour {
         _checkTime10 = 10f;
         _checkTime20 = 20f;
         _checkTimeEnemy = 20f;
-        enemies = new List<UnitController>();
-        friendlies = new List<UnitController>();
+        _enemies = new List<EnemyController>();
+        _friendlies = new List<CivilianController>();
         _locations = new Location[5];
         CreateLocations();
         Debug.Log("Global Controller initialized.");
@@ -119,24 +144,34 @@ public class GlobalController : MonoBehaviour {
                     case "Logger":
                         _numLogger++;
                         Debug.Log("Adding logger to population count.");
+                        _food--;
                         break;
                     case "Electrician":
-                        _numElectr++;
+                        _numElectr+=5;
                         _power = _numElectr;
                         Debug.Log("Adding electrician to population count.");
+                        _food--;
                         break;
                     case "Scavenger":
                         _numScav++;
                         Debug.Log("Adding scavenger to population count.");
-                        _food = _numScav * 3;
+                        _food = _numScav+=3;
                         break;
                     case "Builder":
                         _numBuild++;
                         Debug.Log("Adding builder to population count.");
+                        _food--;
                         break;
                 }
-                _food--;
                 Debug.Log("Increasing wood stores. Total wood rests at " + _wood);
+            }
+            //if no food is available, you can still gain scavengers.
+            else if(_locations[_broadcastLocation] != null && _food == 0 && _locations[_broadcastLocation].Title.Equals("Supermarket") && 
+                roll <= .3 + (_locations[_broadcastLocation].ThreatLevel * .7))
+            {
+                _numScav++;
+                Debug.Log("Adding scavenger to population count.");
+                _food = _numScav += 3;
             }
             else if(_locations[_broadcastLocation] != null)
             {
