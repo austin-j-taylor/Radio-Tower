@@ -4,52 +4,64 @@ using UnityEngine;
 
 public class Location : MonoBehaviour {
     
-    private string title, friendlyType, enemyType;
-    private float threatDownTick, threatUpTick;
-    private bool selected
+    private string _title, _friendlyType, _enemyType;
+    private float _threatDownTick, _threatUpTick;
+    private bool _selected;
+    public bool selected
     {
         //reset timers on location selection change
-        get { return selected; }
+        get { return _selected; }
         set 
         {
-            if (selected == false)
+            if (_selected == false)
             {
-                threatUpTick = 5f;
+                _threatUpTick = 5f;
             }
             else
             {
-                threatDownTick = 10f;
+                _threatDownTick = 10f;
             }
         }
     }
+    private float _threatLevel;
+    //make threatLevel publicly accessible, it's kinda important.
+    public float threatLevel
+    {
+        get { return _threatLevel; }
+        set
+        {
+            _threatLevel = value;
+        }
+    }
+    
 	// Use this for initialization
 	void Start () {
-        threatLevel = 0;
-        threatDownTick = 20f;
-        threatUpTick = 5f;
-        selected = false;
+        _threatLevel = 0;
+        _threatDownTick = 20f;
+        _threatUpTick = 5f;
+        _selected = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
         //upticks threat level after 5 seconds
-	    if(selected)
+	    if(_selected)
         {
-            threatUpTick -= Time.deltaTime;
-            if(threatUpTick <= 0f)
+            _threatUpTick -= Time.deltaTime;
+            if(_threatUpTick <= 0f)
             {
-                threatUpTick = 5f;
-                threatLevel++;
+                _threatUpTick = 5f;
+                _threatLevel += 0.01f;
             }
         }
         //downticks threat level after 5 seconds
         else
         {
-            threatDownTick -= Time.deltaTime;
-            if(threatDownTick <= 0f)
+            _threatDownTick -= Time.deltaTime;
+            if(_threatDownTick <= 0f)
             {
-                threatDownTick = 10f;
-                threatLevel--;
+                _threatDownTick = 10f;
+                _threatLevel -= 0.01f;
             }
         }
        

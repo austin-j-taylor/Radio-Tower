@@ -4,39 +4,39 @@ using UnityEngine;
 
 public class GlobalController : MonoBehaviour {
     //initialization of variables
-    private int wood, power, food;
-    private int numElectr, numScav, numBuild, numLogger;
-    private float checkTime;
-    private int maxChecks;
-    private Location broadcastLocation;
+    private int _wood, _power, _food;
+    private int _numElectr, _numScav, _numBuild, _numLogger;
+    private float _checkTime;
+    private int _maxChecks;
+    private Location _broadcastLocation;
 	// Use this for initialization
 	void Start () {
         //instantiate private variables
-        wood = 0;
-        power = 0;
-        food = 0;
-        numElectr = 0;
-        numScav = 0;
-        numLogger = 0;
-        checkTime = 0f;
+        _wood = 0;
+        _power = 0;
+        _food = 0;
+        _numElectr = 0;
+        _numScav = 0;
+        _numLogger = 0;
+        _checkTime = 0f;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        checkTime += Time.deltaTime;
+        _checkTime += Time.deltaTime;
         //when to perform checks for resource gathering, people joining, threat level rise/decay, etc.
-        if(checkTime % 5 == 0)
+        if(_checkTime % 5 == 0)
         {
             PerformCheck(5);
         }
-        else if(checkTime % 10 == 0)
+        else if(_checkTime % 10 == 0)
         {
             PerformCheck(10);
         }
-        else if(checkTime % 20 == 0)
+        else if(_checkTime % 20 == 0)
         {
             PerformCheck(20);
-            checkTime = 0;
+            _checkTime = 0;
         }
 	}
     void PerformCheck(int checkNum)
@@ -48,13 +48,13 @@ public class GlobalController : MonoBehaviour {
             //woodgathering: +1*numLumber every 10 seconds
             case 5:
                 //TODO: Create individual threat level holders.
-                if(Random.value <= .3/* + threat level*.7 */)
+                if (Random.value <= .3 + (_broadcastLocation.threatLevel * .7))
                 {
                     //TODO: Uptick population based on current location
                 }
                 goto case 10; //yeah I'm using a goto, you wanna make something of it? Fallthroughs in C# being illegal is dumb.
             case 10:
-                wood+=numLogger;
+                _wood+=_numLogger;
                 break;
             
         }
