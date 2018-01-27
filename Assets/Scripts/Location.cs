@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Location : MonoBehaviour {
-
+    [SerializeField]
     private string _title, _friendlyType, _enemyType;
-    private float _threatDownTick, _threatUpTick, _threatLevel;
+    private float _threatDownTick, _threatUpTick; 
+    [SerializeField]
+    private float _threatLevel;
+    [SerializeField]
     private bool _selected;
     
     //getters and setters
@@ -19,10 +22,12 @@ public class Location : MonoBehaviour {
             if (_selected == false)
             {
                 _threatUpTick = 5f;
+                Debug.Log(title+" has been deselected! Resetting its uptick timer.");
             }
             else
             {
                 _threatDownTick = 10f;
+                Debug.Log(title + " has been deselected! Resetting its downtick timer.");
             }
         }
     }
@@ -77,6 +82,7 @@ public class Location : MonoBehaviour {
             {
                 _threatUpTick = 5f;
                 _threatLevel += 0.01f;
+                Debug.Log(name + " threat level has upticked");
             }
         }
         //downticks threat level after 5 seconds
@@ -87,6 +93,7 @@ public class Location : MonoBehaviour {
             {
                 _threatDownTick = 10f;
                 _threatLevel -= 0.01f;
+                Debug.Log(name + " threat level has downticked");
             }
         }
        
