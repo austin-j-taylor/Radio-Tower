@@ -25,6 +25,7 @@ public class GlobalController : MonoBehaviour {
         _checkTime10 = 10f;
         _checkTime20 = 20f;
         _locations = new Location[4];
+        
         Debug.Log("Global Controller initialized.");
 	}
 	
@@ -66,11 +67,13 @@ public class GlobalController : MonoBehaviour {
                         break;
                     case "Electrician":
                         _numElectr++;
+                        _power = _numElectr;
                         Debug.Log("Adding electrician to population count.");
                         break;
                     case "Scavenger":
                         _numScav++;
                         Debug.Log("Adding scavenger to population count.");
+                        _food = _numScav * 3;
                         break;
                     case "Builder":
                         _numBuild++;
@@ -95,5 +98,16 @@ public class GlobalController : MonoBehaviour {
             _locations[_broadcastLocation].Selected = false;
             _locations[locationIndex].Selected = true;
         }
+    }
+    void CreateLocations()
+    {
+        Location supermarket = new Location("Supermarket", "Scavenger", "Weasel");
+        Location town = new Location("Abandoned Town", "Electrician", "Weasel");
+        Location forest = new Location("Forest", "Logger", "Weasel");
+        Location construction = new Location("Construction Site", "Builder", "Weasel");
+        _locations[0] = supermarket;
+        _locations[1] = town;
+        _locations[2] = forest;
+        _locations[3] = construction;
     }
 }
