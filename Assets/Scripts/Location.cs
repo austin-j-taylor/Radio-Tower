@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Location : ScriptableObject {
+public class Location {
     private string _title, _friendlyType, _enemyType;
     private float _threatDownTick, _threatUpTick, _checkTimeEnemy, _spawnInterval; 
     private float _threatLevel;
@@ -70,7 +70,7 @@ public class Location : ScriptableObject {
         _checkTimeEnemy = 20f;
         Debug.Log(_title + " initialized. Selection status " + _selected);
 	}
-    public void Init(string title, string friendlyType, string enemyType)
+    public Location(string title, string friendlyType, string enemyType)
     {
         _title = title;
         _friendlyType = friendlyType;
