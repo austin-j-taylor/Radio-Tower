@@ -26,7 +26,7 @@ public class GlobalController : MonoBehaviour {
         _checkTimeEnemy = 20f;
         enemies = new List<UnitController>();
         friendlies = new List<UnitController>();
-        _locations = new Location[4];
+        _locations = new Location[5];
         CreateLocations();
         Debug.Log("Global Controller initialized.");
 	}
@@ -107,9 +107,10 @@ public class GlobalController : MonoBehaviour {
         Location town = new Location("Abandoned Town", "Electrician", "Weasel");
         Location forest = new Location("Forest", "Logger", "Weasel");
         Location construction = new Location("Construction Site", "Builder", "Weasel");
-        _locations[0] = supermarket;
-        _locations[1] = town;
-        _locations[2] = forest;
-        _locations[3] = construction;
+        _locations[1] = supermarket;
+        _locations[2] = town;
+        _locations[3] = forest;
+        _locations[4] = construction;
+        _locations[0] = null;
     }
 }
