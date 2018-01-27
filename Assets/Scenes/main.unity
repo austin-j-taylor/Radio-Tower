@@ -417,9 +417,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45ce8cbe761886d42949fe15e82e8cb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _title: 
-  _friendlyType: 
-  _enemyType: 
+  _title: Forest
+  _friendlyType: Logger
+  _enemyType: Weasel
   _threatLevel: 0
   _selected: 0
 --- !u!1 &284906392
@@ -776,6 +776,7 @@ GameObject:
   - component: {fileID: 1589625018}
   - component: {fileID: 1589625017}
   - component: {fileID: 1589625016}
+  - component: {fileID: 1589625021}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -853,6 +854,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1589625021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1589625015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0aff0ca69947ac7429dccb572eba7695, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _broadcastLocation: {fileID: 0}
+  _locations: []
 --- !u!1 &1945423590
 GameObject:
   m_ObjectHideFlags: 0
