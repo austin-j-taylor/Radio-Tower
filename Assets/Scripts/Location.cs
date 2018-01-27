@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Location : MonoBehaviour {
-    
+
     private string _title, _friendlyType, _enemyType;
-    private float _threatDownTick, _threatUpTick;
+    private float _threatDownTick, _threatUpTick, _threatLevel;
     private bool _selected;
+    
+    //getters and setters
     public bool selected
     {
         //reset timers on location selection change
         get { return _selected; }
         set 
         {
+            _selected = value;
             if (_selected == false)
             {
                 _threatUpTick = 5f;
@@ -23,8 +26,6 @@ public class Location : MonoBehaviour {
             }
         }
     }
-    private float _threatLevel;
-    //make threatLevel publicly accessible, it's kinda important.
     public float threatLevel
     {
         get { return _threatLevel; }
@@ -33,9 +34,33 @@ public class Location : MonoBehaviour {
             _threatLevel = value;
         }
     }
-    
-	// Use this for initialization
-	void Start () {
+    public string title
+    {
+        get
+        {
+            return _title;
+        }
+        set
+        {
+            _title = value;
+        }
+    }
+    public string friendlyType
+    {
+        get
+        {
+            return _friendlyType;
+        }
+    }
+    public string enemyType
+    {
+        get
+        {
+            return _enemyType;
+        }
+    }
+    // Use this for initialization
+    void Start () {
         _threatLevel = 0;
         _threatDownTick = 20f;
         _threatUpTick = 5f;

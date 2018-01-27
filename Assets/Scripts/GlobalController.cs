@@ -44,13 +44,25 @@ public class GlobalController : MonoBehaviour {
         Random personChecker = new Random();
         switch(checkNum)
         {
-            //checks that exist: check for people increment. .3+.7*threat level every 5 seconds
-            //woodgathering: +1*numLumber every 10 seconds
             case 5:
-                //TODO: Create individual threat level holders.
-                if (Random.value <= .3 + (_broadcastLocation.threatLevel * .7))
+                //Roll chance to gain more population and update population numbers.
+                if (_food > 0 && Random.value <= .3 + (_broadcastLocation.threatLevel * .7))
                 {
-                    //TODO: Uptick population based on current location
+                    switch(_broadcastLocation.friendlyType)
+                    {
+                        case "Logger":
+                            _numLogger++;
+                            break;
+                        case "Electrician";
+                            _numElectr++;
+                            break;
+                        case "Scavenger";
+                            _numScav++;
+                            break;
+                        case "Builder";
+                            _numBuild++;
+                            break;
+                    }
                 }
                 goto case 10; //yeah I'm using a goto, you wanna make something of it? Fallthroughs in C# being illegal is dumb.
             case 10:
