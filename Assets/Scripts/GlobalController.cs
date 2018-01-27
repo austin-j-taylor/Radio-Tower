@@ -82,8 +82,17 @@ public class GlobalController : MonoBehaviour {
             _friendlies = value;
         }
     }
-        
-
+    public Location[] Locations
+    {
+        get
+        {
+            return _locations;
+        }
+        set
+        {
+            _locations = value;
+        }
+    }
     // Use this for initialization
     void Start () {
         //instantiate private variables
