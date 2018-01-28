@@ -78,7 +78,7 @@ public class Location : MonoBehaviour {
         _threatDownTick = 10f;
         _threatUpTick = 5f;
         _selected = false;
-        _globalEnemySpawn = 40f;
+        _globalEnemySpawn = 60f;
         _checkTimeEnemy = 40f;
         weasel = Resources.Load("Weasel", typeof(GameObject)) as GameObject;
         Debug.Log(_title + " initialized. Selection status " + _selected);
@@ -89,7 +89,7 @@ public class Location : MonoBehaviour {
         if(_globalEnemySpawn <= 0)
         {
             ConstantEnemySpawn();
-            _globalEnemySpawn = 40f;
+            _globalEnemySpawn = 60f;
         }
         //Spawns an enemy after a number of seconds based on the threat level when the last enemy was spawned.
         if (_threatLevel >=.25)
