@@ -69,7 +69,7 @@ public class CRTController : MonoBehaviour {
         currentlyBuilding = location;
 
         // do resource check, grey out box or un grey out box
-        if (controller.Wood >= 15 || true) {
+        if (controller.Wood >= 15) {
             barricadeButton.interactable = true;
         } else {
             barricadeButton.interactable = false;

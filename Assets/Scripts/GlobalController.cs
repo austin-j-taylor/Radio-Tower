@@ -131,13 +131,14 @@ public class GlobalController : MonoBehaviour {
         Debug.Log("Global Controller initialized.");
 
         musicController = GameObject.FindWithTag("BGMController").GetComponent<BGMController>();
-        radioSongSnapshots = new AudioMixerSnapshot[6];
+        radioSongSnapshots = new AudioMixerSnapshot[7];
         radioSongSnapshots[0] = mixer.FindSnapshot("Overworld");
         radioSongSnapshots[1] = mixer.FindSnapshot("TheGoodOne");
         radioSongSnapshots[2] = mixer.FindSnapshot("Electrician");
         radioSongSnapshots[3] = mixer.FindSnapshot("Forest");
-        radioSongSnapshots[4] = mixer.FindSnapshot("Battle");
+        radioSongSnapshots[4] = mixer.FindSnapshot("TheBadOne");
         radioSongSnapshots[5] = mixer.FindSnapshot("TitleScreen");
+        radioSongSnapshots[6] = mixer.FindSnapshot("Battle");
 
     }
 
