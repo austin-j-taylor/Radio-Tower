@@ -6,7 +6,7 @@ public class GlobalController : MonoBehaviour {
     //initialization of variables
     private int _wood, _power, _food;
     private int _numElectr, _numScav, _numBuild, _numLogger;
-    private float _checkTime5, _checkTime10, _checkTime20, _checkTimeEnemy;
+    private float _checkTime5, _checkTime10, _checkTime20;
     private int _broadcastLocation;
     private Location[] _locations;
     public List<EnemyController> _enemies;
@@ -104,7 +104,6 @@ public class GlobalController : MonoBehaviour {
         _checkTime5 = 5f;
         _checkTime10 = 10f;
         _checkTime20 = 20f;
-        _checkTimeEnemy = 20f;
         _enemies = new List<EnemyController>();
         _friendlies = new List<CivilianController>();
         _locations = new Location[5];
@@ -163,7 +162,7 @@ public class GlobalController : MonoBehaviour {
                     case "Scavenger":
                         _numScav++;
                         Debug.Log("Adding scavenger to population count.");
-                        _food = _food+=3;
+                        _food +=3;
                         break;
                     case "Builder":
                         _numBuild++;

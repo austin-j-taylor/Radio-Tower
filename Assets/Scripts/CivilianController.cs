@@ -18,7 +18,7 @@ public class CivilianController : UnitController {
         {
             target = GetClosestEnemy(controller.Enemies);
         }
-        else if(Vector2.Distance(target.transform.position, transform.position) < 100)
+        else if(Vector2.Distance(target.transform.position, transform.position) < 10)
         {
             Vector2.MoveTowards(this.transform.position, this.transform.position, 0f);
             if (_attackSpeed <= 0)
