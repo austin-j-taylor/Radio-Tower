@@ -43,6 +43,7 @@ public class UnitController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         CheckForDeath();
+
 	}
     //custom constructor
     public UnitController(string unitType, int damageValue, int healthValue, float attackSpeed, float speedValue, float rangeValue) 
@@ -56,7 +57,11 @@ public class UnitController : MonoBehaviour {
     }
     protected virtual void CheckForDeath()
     {
-        if(_healthValue <= 0 )
+        if(gameObject.name.Contains("RadioTowerCollider") && -HealthValue ==0)
+        {
+            //TODO: Display game over message
+        }
+        else if(_healthValue <= 0 )
         { 
             Destroy(gameObject);
         }
