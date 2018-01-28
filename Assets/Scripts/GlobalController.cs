@@ -11,10 +11,15 @@ public class GlobalController : MonoBehaviour {
     private Location[] _locations;
     public List<EnemyController> _enemies;
     public List<CivilianController> _friendlies;
+    
     public int Wood {
         get
         {
             return _wood;
+        }
+        set
+        {
+            _wood = value;
         }
     }
     public int Power
@@ -23,12 +28,20 @@ public class GlobalController : MonoBehaviour {
         {
             return _power;
         }
+        set
+        {
+            _power = value;
+        }
     }
     public int Food
     {
         get
         {
             return _food;
+        }
+        set
+        {
+            _food = value;
         }
     }
     public int NumElectr
@@ -237,4 +250,5 @@ public class GlobalController : MonoBehaviour {
     {
         return _locations[_broadcastLocation];
     }
+    
 }

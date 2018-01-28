@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Location {
+public class Location : MonoBehaviour{
     public GameObject weasel;
     private string _title, _friendlyType, _enemyType;
     private float _threatDownTick, _threatUpTick, _checkTimeEnemy, _spawnInterval; 
     private float _threatLevel;
     private bool _selected;
-    
     //getters and setters
     public bool Selected
     {   
@@ -87,7 +86,7 @@ public class Location {
             _checkTimeEnemy -= Time.deltaTime;
             if(Time.time - _checkTimeEnemy > 0)
             {
-                SpawnEnemy();
+                
                 _checkTimeEnemy = Time.time + Mathf.Lerp(3, 20, 1f - (ThreatLevel - .3f) / .7f);
             }
         }
@@ -114,9 +113,9 @@ public class Location {
             }
         }  
 	}
-    void SpawnEnemy()
+    public void SpawnEnemy()
     {
-        switch(_title)
+        switch (_title)
         {
             case "Supermarket":
                 MonoBehaviour.Instantiate(weasel, new Vector3(-423.5f, 202.6f, 0), Quaternion.identity);
