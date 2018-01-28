@@ -6,9 +6,11 @@ public class UnitController : MonoBehaviour {
     [SerializeField]
     protected GlobalController controller;
     protected string _unitType;
+    //serialized to be editable in inspector
     [SerializeField]
     protected int _damageValue, _healthValue;
     protected float _attackSpeed, _speedValue, _rangeValue;
+    //getters, setters
     public int HealthValue
     {
         get
@@ -40,6 +42,7 @@ public class UnitController : MonoBehaviour {
 	void Update () {
 		    
 	}
+    //custom constructor
     public UnitController(string unitType, int damageValue, int healthValue, float attackSpeed, float speedValue, float rangeValue) 
     {
         _unitType = unitType;

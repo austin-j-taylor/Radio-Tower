@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Location : MonoBehaviour{
+public class Location : MonoBehaviour {
     public GameObject weasel;
     private string _title, _friendlyType, _enemyType;
     private float _threatDownTick, _threatUpTick, _checkTimeEnemy, _spawnInterval; 
     private float _threatLevel;
     private bool _selected;
+    
     //getters and setters
     public bool Selected
     {   
@@ -29,6 +30,7 @@ public class Location : MonoBehaviour{
             }
         }
     }
+    //getters, setters
     public float ThreatLevel
     {
         get { return _threatLevel; }
@@ -64,8 +66,9 @@ public class Location : MonoBehaviour{
     }
     // Use this for initialization
     void Start () {
-        weasel = Resources.Load("Weasel") as GameObject;
+        
 	}
+    //Init method to be used in place of constructor
     public void InitLocation(string title, string friendlyType, string enemyType)
     {
         _title = title;
@@ -80,16 +83,17 @@ public class Location : MonoBehaviour{
     }
 	// Update is called once per frame
 	public void Update () {
-        //upticks threat level after 5 seconds
+        //Spawns an enemy after a number of seconds based on the threat level when the last enemy was spawned.
         if (_threatLevel >=.05)
         {
             _checkTimeEnemy -= Time.deltaTime;
             if(Time.time - _checkTimeEnemy > 0)
             {
-                
+                SpawnEnemy();
                 _checkTimeEnemy = Time.time + Mathf.Lerp(3, 20, 1f - (ThreatLevel - .3f) / .7f);
             }
         }
+        //upticks threat level after 5 seconds, provided that this location is selected
         if (_selected)
         {
             _threatUpTick -= Time.deltaTime;
@@ -113,9 +117,10 @@ public class Location : MonoBehaviour{
             }
         }  
 	}
-    public void SpawnEnemy()
+    //Instantiate enemy based on which location this is
+    void SpawnEnemy()
     {
-        switch (_title)
+        switch(_title)
         {
             case "Supermarket":
                 MonoBehaviour.Instantiate(weasel, new Vector3(-423.5f, 202.6f, 0), Quaternion.identity);

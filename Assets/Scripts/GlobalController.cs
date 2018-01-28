@@ -11,7 +11,7 @@ public class GlobalController : MonoBehaviour {
     private Location[] _locations;
     public List<EnemyController> _enemies;
     public List<CivilianController> _friendlies;
-    
+    //getters, setters
     public int Wood {
         get
         {
@@ -145,6 +145,7 @@ public class GlobalController : MonoBehaviour {
             _checkTime20 = timeNow + 20;
             PerformCheck(20);
         }
+        //update locations as non-monobehaviour classes do not update automatically
         for(int x = 1; x < 5; x++)
         {
             _locations[x].Update();
@@ -165,6 +166,7 @@ public class GlobalController : MonoBehaviour {
                 Debug.Log("Adding scavenger to population count.");
                 _food += 3;
             }
+            //standard chance for other civvies
             else if (_locations[_broadcastLocation] != null && _food > 0 && roll <= .3 + (_locations[_broadcastLocation].ThreatLevel * .7) )
             {
                 Debug.Log("Successful roll for new population, roll was " + roll*100 + " against a " + (.3 + (_locations[_broadcastLocation].ThreatLevel * .7))* 100 + " percent chance");
@@ -180,11 +182,6 @@ public class GlobalController : MonoBehaviour {
                         _power += 5;
                         Debug.Log("Adding electrician to population count.");
                         _food--;
-                        break;
-                    case "Scavenger":
-                        _numScav++;
-                        Debug.Log("Adding scavenger to population count.");
-                        _food +=3;
                         break;
                     case "Builder":
                         _numBuild++;
@@ -205,19 +202,22 @@ public class GlobalController : MonoBehaviour {
             Debug.Log("Increasing wood stores. Total wood rests at " + _wood);
         }      
     }
+    //called when a location button is pressed
     public void SelectLocation(int locationIndex)
     {
+        //if no location is selected, select clicked location
         if(_broadcastLocation == 0)
         {
             _locations[locationIndex].Selected = true;
             _broadcastLocation = locationIndex;
         }
-        
+        //if currently selected location is reselected, deselect location
         else if(locationIndex == _broadcastLocation )
         {
             _locations[_broadcastLocation].Selected = false;
             _broadcastLocation = 0;
         }
+        //if currently selected location is the construction site or the forest, require extra power
         else if (locationIndex == 3 || locationIndex == 4)
         {
             if(_power >= 50)
@@ -227,6 +227,7 @@ public class GlobalController : MonoBehaviour {
                 _broadcastLocation = locationIndex;
             }
         }
+        //default
         else 
         {
             _locations[_broadcastLocation].Selected = false;
@@ -234,6 +235,7 @@ public class GlobalController : MonoBehaviour {
             _broadcastLocation = locationIndex;
         }
     }
+    //add locations to controller object
     void CreateLocations()
     {
         GameObject locationController = GameObject.FindGameObjectWithTag("LocationController");

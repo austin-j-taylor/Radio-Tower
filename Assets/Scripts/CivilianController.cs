@@ -14,10 +14,12 @@ public class CivilianController : UnitController {
 	// Update is called once per frame
 	void Update () {
         _attackSpeed -= Time.deltaTime;
+        //acquire new target
         if (target == null)
         {
             target = GetClosestEnemy(controller.Enemies);
         }
+        //move towards target until close enough to attack
         else if(Vector2.Distance(target.transform.position, transform.position) < 10)
         {
             Vector2.MoveTowards(this.transform.position, this.transform.position, 0f);
@@ -36,6 +38,7 @@ public class CivilianController : UnitController {
         (unitType: unitType, damageValue: damageValue, healthValue: healthValue, attackSpeed: attackSpeed, speedValue: speedValue, rangeValue: rangeValue)
     {
     }
+    //find closest enemy by comparing transform.position of all enemies stored in the GlobalController's _enemies arraylist
     EnemyController GetClosestEnemy(List<EnemyController> enemies)
     {
         EnemyController closest = null;
