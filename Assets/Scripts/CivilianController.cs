@@ -7,6 +7,9 @@ public class CivilianController : UnitController {
     private EnemyController _target;
     private int _myIndex;
     public int MyIndex { get; set; }
+
+    private AudioSource hurt;
+
     public Vector2 SpawnPoint
     {
         get
@@ -24,6 +27,8 @@ public class CivilianController : UnitController {
         controller = GameObject.FindWithTag("MainCamera").GetComponent<GlobalController>();
         _target = GetClosestEnemy(controller.Enemies);
         _attackSpeed = 3f;
+
+        hurt = GetComponent<AudioSource>();
 
     }
 	
@@ -90,6 +95,11 @@ public class CivilianController : UnitController {
     void Attack(EnemyController other)
     {
         other.HealthValue = other.HealthValue - _damageValue;
+        
+        if(other.HealthValue > 0) {
+            hurt.Play();
+        }
+
     }
     protected override void CheckForDeath()
     {

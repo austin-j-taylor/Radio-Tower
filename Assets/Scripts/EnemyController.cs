@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : UnitController {
+
     private UnitController _obstacle;
+    private AudioSource hurtSounds;
+
     // Use this for initialization
     void Start () {
         controller = GameObject.FindWithTag("MainCamera").GetComponent<GlobalController>();
@@ -12,6 +15,9 @@ public class EnemyController : UnitController {
         Vector3 dir = transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        hurtSounds = GetComponent<AudioSource>();
+
     }
 	
 	// Update is called once per frame
@@ -83,6 +89,9 @@ public class EnemyController : UnitController {
     {
         if (_healthValue <= 0)
         {
+
+            hurtSounds.Play();
+
             controller.Enemies.Remove(this);
             Debug.Log(controller.Enemies.Count);
             Destroy(gameObject);
