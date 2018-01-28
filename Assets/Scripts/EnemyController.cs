@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyController : UnitController {
     private bool _moving;
-    private UnitController obstacle;
+    private UnitController _obstacle;
     // Use this for initialization
     void Start () {
         controller = GameObject.FindWithTag("MainCamera").GetComponent<GlobalController>();
@@ -28,7 +28,7 @@ public class EnemyController : UnitController {
             Vector2.MoveTowards(this.transform.position, this.transform.position, 0f);
             if (_attackSpeed < 0)
             {
-                Attack(obstacle);
+                Attack(_obstacle);
                 _attackSpeed = 3f;
             }
        }

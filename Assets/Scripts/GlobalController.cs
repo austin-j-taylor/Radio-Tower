@@ -9,8 +9,8 @@ public class GlobalController : MonoBehaviour {
     private float _checkTime5, _checkTime10, _checkTime20;
     private int _broadcastLocation;
     private Location[] _locations;
-    public List<EnemyController> _enemies;
-    public List<CivilianController> _friendlies;
+    private List<EnemyController> _enemies;
+    private List<CivilianController> _friendlies;
     //getters, setters
     public int Wood {
         get
@@ -112,7 +112,7 @@ public class GlobalController : MonoBehaviour {
         _power = 0;
         _food = 0;
         _numElectr = 0;
-        _numScav = 0;
+        _numScav = 10;
         _numLogger = 0;
         _checkTime5 = 5f;
         _checkTime10 = 10f;
