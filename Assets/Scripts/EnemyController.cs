@@ -75,7 +75,7 @@ public class EnemyController : UnitController {
             _obstacle = collision.gameObject.GetComponent<UnitController>();
         }
     }
-    void Attack(UnitController other)
+    protected override void Attack(UnitController other)
     {
         other.HealthValue = other.HealthValue - _damageValue;
     }
