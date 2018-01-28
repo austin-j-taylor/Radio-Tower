@@ -236,10 +236,15 @@ public class GlobalController : MonoBehaviour {
     }
     void CreateLocations()
     {
-        Location supermarket = new Location("Supermarket", "Scavenger", "Weasel");
-        Location town = new Location("Abandoned Town", "Electrician", "Weasel");
-        Location forest = new Location("Forest", "Logger", "Weasel");
-        Location construction = new Location("Construction Site", "Builder", "Weasel");
+        GameObject locationController = GameObject.FindGameObjectWithTag("LocationController");
+        Location supermarket = locationController.AddComponent<Location>();
+        supermarket.InitLocation("Supermarket", "Scavenger", "Weasel");
+        Location town = locationController.AddComponent<Location>();
+        town.InitLocation("Abandoned Town", "Electrician", "Weasel");
+        Location forest = locationController.AddComponent<Location>();
+        forest.InitLocation("Forest", "Logger", "Weasel");
+        Location construction = locationController.AddComponent<Location>();
+        construction.InitLocation("Construction Site", "Builder", "Weasel");
         _locations[1] = supermarket;
         _locations[2] = town;
         _locations[3] = forest;

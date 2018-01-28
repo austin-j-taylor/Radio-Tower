@@ -66,7 +66,7 @@ public class Location : MonoBehaviour{
     void Start () {
         weasel = Resources.Load("Weasel") as GameObject;
 	}
-    public Location(string title, string friendlyType, string enemyType)
+    public void InitLocation(string title, string friendlyType, string enemyType)
     {
         _title = title;
         _friendlyType = friendlyType;

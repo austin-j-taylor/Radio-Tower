@@ -33,7 +33,7 @@ public class UnitController : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
-        controller = GameObject.FindWithTag("Main Camera").GetComponent<GlobalController>();
+        controller = GameObject.FindWithTag("MainCamera").GetComponent<GlobalController>();
 	}
 	
 	// Update is called once per frame
