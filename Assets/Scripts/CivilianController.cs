@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
     
 public class CivilianController : UnitController {
-    [SerializeField]
-    private GlobalController controller;
+    
     private EnemyController target;
     // Use this for initialization
     void Start () {
@@ -13,8 +12,14 @@ public class CivilianController : UnitController {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.LookAt(target.transform);
-        transform.position = Vector2.MoveTowards(transform.position, target.transform.position, 0.3f);
+        if (target == null)
+        {
+            target = GetClosestEnemy(controller.Enemies);
+        }
+        else
+        {
+            transform.position = Vector2.MoveTowards(transform.position, target.transform.position, 0.3f);
+        }
     }
     public CivilianController(string unitType, int damageValue, int healthValue, int attackSpeed, int speedValue, int rangeValue) : base
         (unitType: unitType, damageValue: damageValue, healthValue: healthValue, attackSpeed: attackSpeed, speedValue: speedValue, rangeValue: rangeValue)
@@ -35,6 +40,9 @@ public class CivilianController : UnitController {
             }
         }
         return closest;
-
+    }
+    void Attack(EnemyController other)
+    {
+        other.HealthValue = other.HealthValue - _damageValue;
     }
 }

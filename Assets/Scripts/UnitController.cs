@@ -3,11 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class UnitController : MonoBehaviour {
+    [SerializeField]
+    protected GlobalController controller;
     protected string _unitType;
     protected int _damageValue, _healthValue;
     protected float _attackSpeed, _speedValue, _rangeValue;
-	// Use this for initialization
-	void Start () {
+    public int HealthValue
+    {
+        get
+        {
+            return _healthValue;
+        }
+        set
+        {
+            _healthValue = value;
+        }
+    }
+    public int DamageValue
+    {
+        get
+        {
+            return _damageValue;
+        }
+        set
+        {
+            _damageValue = value;
+        }
+    }
+    // Use this for initialization
+    void Start () {
 		
 	}
 	

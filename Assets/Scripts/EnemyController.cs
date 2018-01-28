@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : UnitController {
-
-	// Use this for initialization
-	void Start () {
-		
+    
+    // Use this for initialization
+    void Start () {
+        controller.Enemies.Add(this);
 	}
 	
 	// Update is called once per frame
