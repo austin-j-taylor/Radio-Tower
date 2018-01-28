@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : UnitController {
-    private bool _moving;
     private UnitController _obstacle;
     // Use this for initialization
     void Start () {
         controller = GameObject.FindWithTag("MainCamera").GetComponent<GlobalController>();
         controller.Enemies.Add(this);
-        _moving = true;
         _attackSpeed = 3f;
 	}
 	
@@ -20,19 +18,25 @@ public class EnemyController : UnitController {
        {
             CheckForDeath();
        }
-       else if(_moving)
-       {
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(0,0), _speedValue);
-       }
-       else 
-       {
-            Vector2.MoveTowards(this.transform.position, this.transform.position, 0f);
+        else if (_obstacle != null)
+        {
+            Vector2.MoveTowards(transform.position, transform.position, 0f);
             if (_attackSpeed < 0)
             {
+                Vector3 targetPostition = new Vector3(_obstacle.transform.position.x, _obstacle.transform.position.y, transform.position.z);
+                this.transform.LookAt(targetPostition);
                 Attack(_obstacle);
                 _attackSpeed = 3f;
+                Debug.Log("I have attacked something! Its remaining health is " + _obstacle.HealthValue);
             }
-       }
+        }
+        else
+        {
+            
+            transform.LookAt(new Vector3(0, 0, transform.position.z));
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(0,0), _speedValue);
+        }
+       
        
 	}
     public EnemyController(string unitType, int damageValue, int healthValue, float attackSpeed, float speedValue, float rangeValue) : base
@@ -58,9 +62,10 @@ public class EnemyController : UnitController {
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        _obstacle = collision.gameObject.GetComponent<UnitController>();
-        _moving = false;
-        
+        if (collision.gameObject.name.Contains("Barricade"))
+        {
+            _obstacle = collision.gameObject.GetComponent<UnitController>();
+        }
     }
     void Attack(UnitController other)
     {
