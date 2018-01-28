@@ -124,19 +124,19 @@ public class Location : MonoBehaviour {
         switch(_title)
         {
             case "Supermarket":
-                MonoBehaviour.Instantiate(weasel, new Vector3(-423.5f, 202.6f, 0), Quaternion.identity);
+                MonoBehaviour.Instantiate(weasel, new Vector3(-45f, 20f, 0), Quaternion.identity);
                 Debug.Log("Spawning Supermarket enemy (top left)");
                 break;
             case "Abandoned Town":
-                MonoBehaviour.Instantiate(weasel, new Vector3(425.5f, 203f, 0), Quaternion.identity);
+                MonoBehaviour.Instantiate(weasel, new Vector3(45f, 20f, 0), Quaternion.identity);
                 Debug.Log("Spawning town enemy (top right)");
                 break;
             case "Forest":
-                MonoBehaviour.Instantiate(weasel, new Vector3(424.6f, -194f, 0), Quaternion.identity);
+                MonoBehaviour.Instantiate(weasel, new Vector3(45f, -20f, 0), Quaternion.identity);
                 Debug.Log("Spawning Forest enemy (bottom right)");
                 break;
             case "Construction Site":
-                MonoBehaviour.Instantiate(weasel, new Vector3(-425.5f, -194f, 0), Quaternion.identity);
+                MonoBehaviour.Instantiate(weasel, new Vector3(-45f, -20f, 0), Quaternion.identity);
                 Debug.Log("Spawning Construction Site enemy (bottom left)");
                 break;
         }
