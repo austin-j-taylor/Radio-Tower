@@ -75,7 +75,7 @@ public class Location : MonoBehaviour {
         _friendlyType = friendlyType;
         _enemyType = enemyType;
         _threatLevel = 0;
-        _threatDownTick = 20f;
+        _threatDownTick = 10f;
         _threatUpTick = 5f;
         _selected = false;
         _checkTimeEnemy = 40f;
@@ -113,7 +113,7 @@ public class Location : MonoBehaviour {
             _threatDownTick -= Time.deltaTime;
             if(_threatDownTick <= 0f && ThreatLevel>0)
             {
-                _threatDownTick = 20f;
+                _threatDownTick = 10f;
                 _threatLevel -= 0.01f;
                 Debug.Log(_title + " threat level has downticked");
             }
