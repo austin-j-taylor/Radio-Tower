@@ -2480,6 +2480,7 @@ GameObject:
   - component: {fileID: 538130686}
   - component: {fileID: 538130688}
   - component: {fileID: 538130687}
+  - component: {fileID: 538130689}
   m_Layer: 0
   m_Name: RadioTowerCollider
   m_TagString: Defense
@@ -2569,6 +2570,21 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
+--- !u!114 &538130689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 538130685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c8a66ca4fad64942b95b77707d6a30c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 0}
+  _damageValue: 5
+  _healthValue: 100
+  _speedValue: 0
 --- !u!1 &543959037
 GameObject:
   m_ObjectHideFlags: 0
