@@ -9,7 +9,9 @@ public class UnitController : MonoBehaviour {
     //serialized to be editable in inspector
     [SerializeField]
     protected int _damageValue, _healthValue;
-    protected float _attackSpeed, _speedValue, _rangeValue;
+    [SerializeField]
+    protected float _speedValue;
+    protected float _attackSpeed, _rangeValue;
     //getters, setters
     public int HealthValue
     {

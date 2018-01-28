@@ -85,13 +85,14 @@ public class Location : MonoBehaviour {
 	// Update is called once per frame
 	public void Update () {
         //Spawns an enemy after a number of seconds based on the threat level when the last enemy was spawned.
-        if (_threatLevel >=.05)
+        if (_threatLevel >=.3)
         {
             _checkTimeEnemy -= Time.deltaTime;
             if(Time.time - _checkTimeEnemy > 0)
             {
                 SpawnEnemy();
                 _checkTimeEnemy = Time.time + Mathf.Lerp(3, 20, 1f - (ThreatLevel - .3f) / .7f);
+                Debug.Log(_checkTimeEnemy - Time.time);
             }
         }
         //upticks threat level after 5 seconds, provided that this location is selected
