@@ -95,7 +95,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
   _damageValue: 0
-  _healthValue: 0
+  _healthValue: 15
   _speedValue: 0
 --- !u!222 &222442837129690754
 CanvasRenderer:
