@@ -89,6 +89,7 @@ public class Location : MonoBehaviour {
         if(_globalEnemySpawn <= 0)
         {
             ConstantEnemySpawn();
+            _globalEnemySpawn = 40f;
         }
         //Spawns an enemy after a number of seconds based on the threat level when the last enemy was spawned.
         if (_threatLevel >=.25)
