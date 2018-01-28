@@ -6,6 +6,7 @@ public class UnitController : MonoBehaviour {
     [SerializeField]
     protected GlobalController controller;
     protected string _unitType;
+    [SerializeField]
     protected int _damageValue, _healthValue;
     protected float _attackSpeed, _speedValue, _rangeValue;
     public int HealthValue

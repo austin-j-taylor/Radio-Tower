@@ -7,7 +7,6 @@ public class GlobalController : MonoBehaviour {
     private int _wood, _power, _food;
     private int _numElectr, _numScav, _numBuild, _numLogger;
     private float _checkTime5, _checkTime10, _checkTime20, _checkTimeEnemy;
-    private int _maxChecks;
     private int _broadcastLocation;
     private Location[] _locations;
     public List<EnemyController> _enemies;
@@ -156,15 +155,15 @@ public class GlobalController : MonoBehaviour {
                         _food--;
                         break;
                     case "Electrician":
-                        _numElectr+=5;
-                        _power = _numElectr;
+                        _numElectr++;
+                        _power += 5;
                         Debug.Log("Adding electrician to population count.");
                         _food--;
                         break;
                     case "Scavenger":
                         _numScav++;
                         Debug.Log("Adding scavenger to population count.");
-                        _food = _numScav+=3;
+                        _food = _food+=3;
                         break;
                     case "Builder":
                         _numBuild++;
@@ -180,7 +179,7 @@ public class GlobalController : MonoBehaviour {
             {
                 _numScav++;
                 Debug.Log("Adding scavenger to population count.");
-                _food = _numScav += 3;
+                _food += 3;
             }
             else if(_locations[_broadcastLocation] != null)
             {

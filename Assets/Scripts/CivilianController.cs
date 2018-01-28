@@ -8,13 +8,24 @@ public class CivilianController : UnitController {
     // Use this for initialization
     void Start () {
         target = GetClosestEnemy(controller.Enemies);
+        _attackSpeed = 3f;
     }
 	
 	// Update is called once per frame
 	void Update () {
+        _attackSpeed -= Time.deltaTime;
         if (target == null)
         {
             target = GetClosestEnemy(controller.Enemies);
+        }
+        else if(Vector2.Distance(target.transform.position, transform.position) < 100)
+        {
+            Vector2.MoveTowards(this.transform.position, this.transform.position, 0f);
+            if (_attackSpeed <= 0)
+            {
+                Attack(target);
+                _attackSpeed = 3f;
+            }
         }
         else
         {
@@ -45,4 +56,8 @@ public class CivilianController : UnitController {
     {
         other.HealthValue = other.HealthValue - _damageValue;
     }
+ //   private void OnCollisionEnter2D(Collision2D collision)
+ //   {
+ //       EnemyController enemy = collision.gameObject.GetComponent<EnemyController>();
+ //  }
 }

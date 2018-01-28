@@ -11,7 +11,10 @@ public class EnemyController : UnitController {
 	
 	// Update is called once per frame
 	void Update () {
-       
+       if(_healthValue <=0)
+        {
+            Destroy(this.gameObject);
+        }
 	}
     public EnemyController(string unitType, int damageValue, int healthValue, int attackSpeed, int speedValue, int rangeValue) : base
         (unitType: unitType, damageValue: damageValue, healthValue: healthValue, attackSpeed: attackSpeed, speedValue: speedValue, rangeValue: rangeValue)
