@@ -7,6 +7,8 @@ public class MacroMapController : MonoBehaviour {
 
     public GlobalController controller;
     public GameObject cRTScreen;
+    public Image forestImage;
+    public Image constructionImage;
 
     private Animator anim;
     private LocationButton[] buttons;
@@ -59,6 +61,18 @@ public class MacroMapController : MonoBehaviour {
                 threatValues[i].text = "THREAT:\n" + threat + "%";
             }
         }
+        // make image dark if energy < 50
+        Color forestColor = forestImage.color;
+        Color constructionColor = constructionImage.color;
+        if(controller.Power < 50) {
+            forestColor.a = .2f;
+            constructionColor.a = .2f;
+        } else {
+            forestColor.a = 1f;
+            constructionColor.a = 1f;
+        }
+        constructionImage.color = constructionColor;
+        forestImage.color = forestColor;
     }
 
     public void SetMicroMapControl(int enable) {
