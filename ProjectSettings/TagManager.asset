@@ -44,6 +44,9 @@ TagManager:
   - name: UI
     uniqueID: 2517202141
     locked: 0
+  - name: Built Barricades
+    uniqueID: 1032706887
+    locked: 0
   - name: Front Sprites
     uniqueID: 2297041041
     locked: 0
