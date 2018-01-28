@@ -41,7 +41,7 @@ public class UnitController : MonoBehaviour {
         if(gameObject.name == "RadioTowerCollider")
         {
             _attackSpeed = 5f;
-            _rangeValue = 20f;
+            _rangeValue = 10f;
         }
         controller = GameObject.FindWithTag("MainCamera").GetComponent<GlobalController>();
 	}

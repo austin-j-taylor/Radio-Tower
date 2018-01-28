@@ -8,7 +8,7 @@ public class Location : MonoBehaviour {
     private float _threatDownTick, _threatUpTick, _checkTimeEnemy, _spawnInterval; 
     private float _threatLevel;
     private bool _selected;
-    
+    private float _globalEnemySpawn;
     //getters and setters
     public bool Selected
     {   
@@ -78,12 +78,18 @@ public class Location : MonoBehaviour {
         _threatDownTick = 10f;
         _threatUpTick = 5f;
         _selected = false;
+        _globalEnemySpawn = 40f;
         _checkTimeEnemy = 40f;
         weasel = Resources.Load("Weasel", typeof(GameObject)) as GameObject;
         Debug.Log(_title + " initialized. Selection status " + _selected);
     }
 	// Update is called once per frame
 	public void Update () {
+        _globalEnemySpawn -= Time.deltaTime;
+        if(_globalEnemySpawn <= 0)
+        {
+            ConstantEnemySpawn();
+        }
         //Spawns an enemy after a number of seconds based on the threat level when the last enemy was spawned.
         if (_threatLevel >=.25)
         {
@@ -125,21 +131,47 @@ public class Location : MonoBehaviour {
         switch(_title)
         {
             case "Supermarket":
-                MonoBehaviour.Instantiate(weasel, new Vector3(-45f, 20f, 0), Quaternion.identity);
+                Instantiate(weasel, new Vector3(-45f, 20f, 0), Quaternion.identity);
                 Debug.Log("Spawning Supermarket enemy (top left)");
                 break;
             case "Abandoned Town":
-                MonoBehaviour.Instantiate(weasel, new Vector3(45f, 20f, 0), Quaternion.identity);
+                Instantiate(weasel, new Vector3(45f, 20f, 0), Quaternion.identity);
                 Debug.Log("Spawning town enemy (top right)");
                 break;
             case "Forest":
-                MonoBehaviour.Instantiate(weasel, new Vector3(45f, -20f, 0), Quaternion.identity);
+                Instantiate(weasel, new Vector3(45f, -20f, 0), Quaternion.identity);
                 Debug.Log("Spawning Forest enemy (bottom right)");
                 break;
             case "Construction Site":
-                MonoBehaviour.Instantiate(weasel, new Vector3(-45f, -20f, 0), Quaternion.identity);
+                Instantiate(weasel, new Vector3(-45f, -20f, 0), Quaternion.identity);
                 Debug.Log("Spawning Construction Site enemy (bottom left)");
                 break;
+        }
+    }
+    void ConstantEnemySpawn()
+    {
+        float roll = Random.value;
+        if(roll <= 0.25f)
+        {
+            switch (_title)
+            {
+                case "Supermarket":
+                    Instantiate(weasel, new Vector3(-45f, 20f, 0), Quaternion.identity);
+                    Debug.Log("Spawning Supermarket enemy (top left)");
+                    break;
+                case "Abandoned Town":
+                    Instantiate(weasel, new Vector3(45f, 20f, 0), Quaternion.identity);
+                    Debug.Log("Spawning town enemy (top right)");
+                    break;
+                case "Forest":
+                    Instantiate(weasel, new Vector3(45f, -20f, 0), Quaternion.identity);
+                    Debug.Log("Spawning Forest enemy (bottom right)");
+                    break;
+                case "Construction Site":
+                    Instantiate(weasel, new Vector3(-45f, -20f, 0), Quaternion.identity);
+                    Debug.Log("Spawning Construction Site enemy (bottom left)");
+                    break;
+            }
         }
     }
 }
