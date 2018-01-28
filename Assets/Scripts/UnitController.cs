@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UnitController : MonoBehaviour {
     [SerializeField]
@@ -41,6 +42,7 @@ public class UnitController : MonoBehaviour {
         {
             Debug.Log("Collider attack speed set!");
             _attackSpeed = 5f;
+            _rangeValue = 20f;
         }
         controller = GameObject.FindWithTag("MainCamera").GetComponent<GlobalController>();
 	}
@@ -49,7 +51,7 @@ public class UnitController : MonoBehaviour {
 	void Update () {
         EnemyController e = GetClosestEnemy(controller.Enemies);
         _attackSpeed -= Time.deltaTime;
-        if (e != null && Vector2.Distance(e.gameObject.transform.position,transform.position) < 10 && gameObject.name == "RadioTowerCollider" && _attackSpeed < 0)
+        if (e != null && Vector2.Distance(e.gameObject.transform.position,transform.position) < _rangeValue && gameObject.name == "RadioTowerCollider" && _attackSpeed < 0)
         {
             Debug.Log("Found enemy. Laser time.");
             Attack(e);
@@ -70,9 +72,11 @@ public class UnitController : MonoBehaviour {
     }
     protected virtual void CheckForDeath()
     {
-        if(gameObject.name.Contains("RadioTowerCollider") && -HealthValue ==0)
+        if(gameObject.name.Contains("RadioTowerCollider") && _healthValue <= 0)
         {
-            //TODO: Display game over message
+            //currently resets game
+            SceneManager.LoadScene("Main");
+            Destroy(gameObject);
         }
         else if(_healthValue <= 0 )
         { 
