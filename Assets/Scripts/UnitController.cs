@@ -42,7 +42,7 @@ public class UnitController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		    
+        CheckForDeath();
 	}
     //custom constructor
     public UnitController(string unitType, int damageValue, int healthValue, float attackSpeed, float speedValue, float rangeValue) 

@@ -113,7 +113,7 @@ public class GlobalController : MonoBehaviour {
         _food = 0;
         _numElectr = 0;
         _numScav = 10;
-        _numLogger = 0;
+        _numLogger = 15;
         _checkTime5 = 5f;
         _checkTime10 = 10f;
         _checkTime20 = 20f;
