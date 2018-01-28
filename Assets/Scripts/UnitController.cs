@@ -37,11 +37,22 @@ public class UnitController : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
+        if(gameObject.name == "RadioTowerCollider")
+        {
+            _attackSpeed = 5f;
+        }
         controller = GameObject.FindWithTag("MainCamera").GetComponent<GlobalController>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        EnemyController e = GetClosestEnemy(controller.Enemies);
+        _attackSpeed -= Time.deltaTime;
+        if(Vector2.Distance(e.gameObject.transform.position,transform.position) < 10 && gameObject.name == "RadioTowerCollider" && _attackSpeed < 0)
+        {
+            Attack(e);
+            _attackSpeed = 5f;
+        }
         CheckForDeath();
 
 	}
@@ -65,5 +76,28 @@ public class UnitController : MonoBehaviour {
         { 
             Destroy(gameObject);
         }
+    }
+    EnemyController GetClosestEnemy(List<EnemyController> enemies)
+    {
+        EnemyController closest = null;
+        float minDist = Mathf.Infinity;
+        Vector2 currentpos = transform.position;
+        foreach (EnemyController e in enemies)
+        {
+            if (e != null)
+            {
+                float dist = Vector2.Distance(e.transform.position, currentpos);
+                if (dist < minDist)
+                {
+                    closest = e;
+                    minDist = dist;
+                }
+            }
+        }
+        return closest;
+    }
+    protected virtual void Attack(UnitController other)
+    {
+        
     }
 }
