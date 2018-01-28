@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class GlobalController : MonoBehaviour {
     //initialization of variables
@@ -11,6 +12,12 @@ public class GlobalController : MonoBehaviour {
     private Location[] _locations;
     private List<EnemyController> _enemies;
     private List<CivilianController> _friendlies;
+
+    public AudioMixer mixer;
+
+    private BGMController musicController;
+    private AudioMixerSnapshot[] radioSongSnapshots;
+
     //getters, setters
     public int Wood {
         get
@@ -122,7 +129,17 @@ public class GlobalController : MonoBehaviour {
         _locations = new Location[5];
         CreateLocations();
         Debug.Log("Global Controller initialized.");
-	}
+
+        musicController = GameObject.FindWithTag("BGMController").GetComponent<BGMController>();
+        radioSongSnapshots = new AudioMixerSnapshot[6];
+        radioSongSnapshots[0] = mixer.FindSnapshot("Overworld");
+        radioSongSnapshots[1] = mixer.FindSnapshot("TheGoodOne");
+        radioSongSnapshots[2] = mixer.FindSnapshot("Electrician");
+        radioSongSnapshots[3] = mixer.FindSnapshot("Forest");
+        radioSongSnapshots[4] = mixer.FindSnapshot("Battle");
+        radioSongSnapshots[5] = mixer.FindSnapshot("TitleScreen");
+
+    }
 
     // Update is called once per frame
     void Update()
@@ -210,12 +227,16 @@ public class GlobalController : MonoBehaviour {
         {
             _locations[locationIndex].Selected = true;
             _broadcastLocation = locationIndex;
+            // update BGM:
+            radioSongSnapshots[_broadcastLocation].TransitionTo(.5f);
         }
         //if currently selected location is reselected, deselect location
         else if(locationIndex == _broadcastLocation )
         {
             _locations[_broadcastLocation].Selected = false;
             _broadcastLocation = 0;
+            // update BGM:
+            radioSongSnapshots[_broadcastLocation].TransitionTo(.5f);
         }
         //if currently selected location is the construction site or the forest, require extra power
         else if (locationIndex == 3 || locationIndex == 4)
@@ -225,6 +246,8 @@ public class GlobalController : MonoBehaviour {
                 _locations[_broadcastLocation].Selected = false;
                 _locations[locationIndex].Selected = true;
                 _broadcastLocation = locationIndex;
+                // update BGM:
+                radioSongSnapshots[_broadcastLocation].TransitionTo(.5f);
             }
         }
         //default
@@ -233,7 +256,11 @@ public class GlobalController : MonoBehaviour {
             _locations[_broadcastLocation].Selected = false;
             _locations[locationIndex].Selected = true;
             _broadcastLocation = locationIndex;
+            // update BGM:
+            radioSongSnapshots[_broadcastLocation].TransitionTo(.5f);
         }
+
+
     }
     //add locations to controller object
     void CreateLocations()
