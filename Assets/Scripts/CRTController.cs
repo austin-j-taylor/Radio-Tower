@@ -15,7 +15,7 @@ public class CRTController : MonoBehaviour {
     public Button barricadeButton;
     public Canvas barricadesCanvas;
 
-    public RectTransform[] barricadePositions;
+    private RectTransform[] barricadePositions;
     private bool isInTower;
     private bool isInBarricade;
     private int currentlyBuilding;
@@ -47,7 +47,11 @@ public class CRTController : MonoBehaviour {
         towerOrderAnimator.SetBool("IsIn", isInTower);
 
         // do resource check, grey out box or un grey out box
-        towerButton.interactable = true;
+        if(controller.Wood >= 500 && controller.Power >= 150 && controller.NumBuild >= 15) {
+            towerButton.interactable = true;
+        } else {
+            towerButton.interactable = false;
+        }
     }
 
     public void CancelTowerOrder() {
@@ -65,9 +69,13 @@ public class CRTController : MonoBehaviour {
         barricadeOrderAnimator.SetBool("IsIn", isInBarricade);
         currentlyBuilding = location;
 
-
         // do resource check, grey out box or un grey out box
-        barricadeButton.interactable = true;
+        if (controller.Wood >= 15) {
+            barricadeButton.interactable = true;
+        } else {
+            barricadeButton.interactable = false;
+        }
+
     }
 
     public void CancelBarricadeOrder() {
@@ -79,9 +87,13 @@ public class CRTController : MonoBehaviour {
         isInBarricade = false;
         barricadeOrderAnimator.SetBool("IsIn", isInBarricade);
 
-        //controller.Wood = controller.Wood - 15;
+        controller.Wood = controller.Wood - 15;
         GameObject newBarricade = Instantiate(barricade, barricadePositions[currentlyBuilding].position, Quaternion.identity);
-        //newBarricade.transform.SetParent(barricadesCanvas.transform, true);
+
+        newBarricade.transform.SetParent(barricadesCanvas.transform, true);
+        newBarricade.transform.position = barricadePositions[currentlyBuilding].position;
+
+        newBarricade.transform.localScale = new Vector3(1, 1, 1);
 
     }
 }

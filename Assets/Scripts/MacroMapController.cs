@@ -16,7 +16,7 @@ public class MacroMapController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         anim = GetComponent<Animator>();
-        isIn = true;
+        isIn = false;
         anim.SetBool("IsIn", isIn);
         buttons = GetComponentsInChildren<LocationButton>();
 
