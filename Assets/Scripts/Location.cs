@@ -79,6 +79,7 @@ public class Location : MonoBehaviour {
         _threatUpTick = 5f;
         _selected = false;
         _checkTimeEnemy = 20f;
+        weasel = Resources.Load("Weasel", typeof(GameObject)) as GameObject;
         Debug.Log(_title + " initialized. Selection status " + _selected);
     }
 	// Update is called once per frame

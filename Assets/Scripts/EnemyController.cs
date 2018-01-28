@@ -7,6 +7,7 @@ public class EnemyController : UnitController {
     private UnitController obstacle;
     // Use this for initialization
     void Start () {
+        controller = GameObject.FindWithTag("MainCamera").GetComponent<GlobalController>();
         controller.Enemies.Add(this);
         _moving = true;
 	}
