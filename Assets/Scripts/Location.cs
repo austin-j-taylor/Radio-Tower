@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Location {
-    public GameObject Weasel;
+    public GameObject weasel;
     private string _title, _friendlyType, _enemyType;
     private float _threatDownTick, _threatUpTick, _checkTimeEnemy, _spawnInterval; 
     private float _threatLevel;
@@ -65,7 +65,7 @@ public class Location {
     }
     // Use this for initialization
     void Start () {
-        
+        weasel = Resources.Load("Weasel") as GameObject;
 	}
     public Location(string title, string friendlyType, string enemyType)
     {
@@ -82,7 +82,7 @@ public class Location {
 	// Update is called once per frame
 	public void Update () {
         //upticks threat level after 5 seconds
-        if (_threatLevel >=.3)
+        if (_threatLevel >=.05)
         {
             _checkTimeEnemy -= Time.deltaTime;
             if(Time.time - _checkTimeEnemy > 0)
@@ -119,16 +119,20 @@ public class Location {
         switch(_title)
         {
             case "Supermarket":
-                MonoBehaviour.Instantiate(Weasel, new Vector3(-423.5f, 202.6f, 0), Quaternion.identity);
+                MonoBehaviour.Instantiate(weasel, new Vector3(-423.5f, 202.6f, 0), Quaternion.identity);
+                Debug.Log("Spawning Supermarket enemy (top left)");
                 break;
             case "Abandoned Town":
-                MonoBehaviour.Instantiate(Weasel, new Vector3(425.5f, 203f, 0), Quaternion.identity);
+                MonoBehaviour.Instantiate(weasel, new Vector3(425.5f, 203f, 0), Quaternion.identity);
+                Debug.Log("Spawning town enemy (top right)");
                 break;
             case "Forest":
-                MonoBehaviour.Instantiate(Weasel, new Vector3(424.6f, -194f, 0), Quaternion.identity);
+                MonoBehaviour.Instantiate(weasel, new Vector3(424.6f, -194f, 0), Quaternion.identity);
+                Debug.Log("Spawning Forest enemy (bottom right)");
                 break;
             case "Construction Site":
-                MonoBehaviour.Instantiate(Weasel, new Vector3(-425.5f, -194f, 0), Quaternion.identity);
+                MonoBehaviour.Instantiate(weasel, new Vector3(-425.5f, -194f, 0), Quaternion.identity);
+                Debug.Log("Spawning Construction Site enemy (bottom left)");
                 break;
         }
     }

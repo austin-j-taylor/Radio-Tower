@@ -143,7 +143,16 @@ public class GlobalController : MonoBehaviour {
         {
             //Roll chance to gain more population and update population numbers.
             float roll = Random.value;
-            if (_locations[_broadcastLocation] != null && _food > 0 && roll <= .3 + (_locations[_broadcastLocation].ThreatLevel * .7) )
+            //if no food is available, you can still gain scavengers. Additionally, you are more likely to gain scavengers than other civilians.
+            if (_locations[_broadcastLocation] != null && _locations[_broadcastLocation].Title.Equals("Supermarket") &&
+                roll <= .5 + (_locations[_broadcastLocation].ThreatLevel * .7))
+            {
+                Debug.Log("Successful roll for new population, roll was " + roll * 100 + " against a " + (.3 + (_locations[_broadcastLocation].ThreatLevel * .7)) * 100 + " percent chance");
+                _numScav++;
+                Debug.Log("Adding scavenger to population count.");
+                _food += 3;
+            }
+            else if (_locations[_broadcastLocation] != null && _food > 0 && roll <= .3 + (_locations[_broadcastLocation].ThreatLevel * .7) )
             {
                 Debug.Log("Successful roll for new population, roll was " + roll*100 + " against a " + (.3 + (_locations[_broadcastLocation].ThreatLevel * .7))* 100 + " percent chance");
                 switch (_locations[_broadcastLocation].FriendlyType)
@@ -171,14 +180,6 @@ public class GlobalController : MonoBehaviour {
                         break;
                 }
                 Debug.Log("Increasing wood stores. Total wood rests at " + _wood);
-            }
-            //if no food is available, you can still gain scavengers.
-            else if(_locations[_broadcastLocation] != null && _food == 0 && _locations[_broadcastLocation].Title.Equals("Supermarket") && 
-                roll <= .3 + (_locations[_broadcastLocation].ThreatLevel * .7))
-            {
-                _numScav++;
-                Debug.Log("Adding scavenger to population count.");
-                _food += 3;
             }
             else if(_locations[_broadcastLocation] != null)
             {
