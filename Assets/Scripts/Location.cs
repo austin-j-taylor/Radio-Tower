@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Location {
+    public GameObject Weasel;
     private string _title, _friendlyType, _enemyType;
     private float _threatDownTick, _threatUpTick, _checkTimeEnemy, _spawnInterval; 
     private float _threatLevel;
@@ -115,6 +116,20 @@ public class Location {
 	}
     void SpawnEnemy()
     {
-
+        switch(_title)
+        {
+            case "Supermarket":
+                MonoBehaviour.Instantiate(Weasel, new Vector3(-423.5f, 202.6f, 0), Quaternion.identity);
+                break;
+            case "Abandoned Town":
+                MonoBehaviour.Instantiate(Weasel, new Vector3(425.5f, 203f, 0), Quaternion.identity);
+                break;
+            case "Forest":
+                MonoBehaviour.Instantiate(Weasel, new Vector3(424.6f, -194f, 0), Quaternion.identity);
+                break;
+            case "Construction Site":
+                MonoBehaviour.Instantiate(Weasel, new Vector3(-425.5f, -194f, 0), Quaternion.identity);
+                break;
+        }
     }
 }
