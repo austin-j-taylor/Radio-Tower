@@ -50,7 +50,7 @@ public class UnitController : MonoBehaviour {
 	void Update () {
         EnemyController e = GetClosestEnemy(controller.Enemies);
         _attackSpeed -= Time.deltaTime;
-        if (e != null && Vector2.Distance(e.gameObject.transform.position,transform.position) < _rangeValue && gameObject.name == "RadioTowerCollider" && _attackSpeed < 0)
+        if (e != null && Vector2.Distance(e.gameObject.transform.position,transform.position) <= _rangeValue && gameObject.name == "RadioTowerCollider" && _attackSpeed < 0)
         {
             Attack(e);
             _attackSpeed = 5f;
@@ -102,6 +102,6 @@ public class UnitController : MonoBehaviour {
     }
     protected virtual void Attack(UnitController other)
     {
-        
+        other.HealthValue -= _damageValue;
     }
 }
