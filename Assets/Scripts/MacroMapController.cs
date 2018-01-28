@@ -22,17 +22,18 @@ public class MacroMapController : MonoBehaviour {
 
         Image[] allImages = GetComponentsInChildren<Image>();
 
-
-        for(int i = 2; i < allImages.Length; i += 2) {
-            threatStickies[(i - 2) / 2] = allImages[i];
-            threatValues[(i - 2) / 2] = threatStickies[(i - 2) / 2].GetComponentInChildren<Text>();
-        }
-
         for (int i = 1; i <= buttons.Length; i++) {
             buttons[i - 1].SetLocation(i);
         }
+
+        threatStickies = new Image[4];
+        threatValues = new Text[4];
+
+        for (int i = 2; i < allImages.Length; i += 2) {
+            threatStickies[(i - 2) / 2] = allImages[i];
+            threatValues[(i - 2) / 2] = threatStickies[(i - 2) / 2].GetComponentInChildren<Text>();
+        }
     }
-	
 	// Update is called once per frame
 	void Update () {
 		if(Input.GetKeyDown(KeyCode.Tab)) {
@@ -43,8 +44,10 @@ public class MacroMapController : MonoBehaviour {
             int threat = (int)(controller.Locations[i + 1].ThreatLevel * 100);
             if (threat == 0) {
                 threatStickies[i].enabled = false;
+                threatValues[i].enabled = false;
             } else {
                 threatStickies[i].enabled = true;
+                threatValues[i].enabled = true;
                 threatValues[i].text = "THREAT:\n" + threat + "%";
             }
         }
