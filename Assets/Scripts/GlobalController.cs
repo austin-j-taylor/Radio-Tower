@@ -200,10 +200,20 @@ public class GlobalController : MonoBehaviour {
             _locations[locationIndex].Selected = true;
             _broadcastLocation = locationIndex;
         }
-        else if(locationIndex == _broadcastLocation)
+        
+        else if(locationIndex == _broadcastLocation )
         {
             _locations[_broadcastLocation].Selected = false;
             _broadcastLocation = 0;
+        }
+        else if (locationIndex == 3 || locationIndex == 4)
+        {
+            if(_power >= 50)
+            {
+                _locations[_broadcastLocation].Selected = false;
+                _locations[locationIndex].Selected = true;
+                _broadcastLocation = locationIndex;
+            }
         }
         else 
         {
