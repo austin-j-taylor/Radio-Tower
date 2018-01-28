@@ -20,12 +20,12 @@ public class EnemyController : UnitController {
        }
        else if(_moving)
        {
-            //TODO: Beeline for that tower!
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(0,0), _speedValue);
        }
        else 
        {
-            //TODO: Stop enemy movement
-            if(_attackSpeed < 0)
+            Vector2.MoveTowards(this.transform.position, this.transform.position, 0f);
+            if (_attackSpeed < 0)
             {
                 Attack(obstacle);
                 _attackSpeed = 3f;
@@ -33,7 +33,7 @@ public class EnemyController : UnitController {
        }
        
 	}
-    public EnemyController(string unitType, int damageValue, int healthValue, int attackSpeed, int speedValue, int rangeValue) : base
+    public EnemyController(string unitType, int damageValue, int healthValue, float attackSpeed, float speedValue, float rangeValue) : base
         (unitType: unitType, damageValue: damageValue, healthValue: healthValue, attackSpeed: attackSpeed, speedValue: speedValue, rangeValue: rangeValue)
     {
     }
@@ -56,8 +56,9 @@ public class EnemyController : UnitController {
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        _moving = false;
         obstacle = collision.gameObject.GetComponent<UnitController>();
+        _moving = false;
+        
     }
     void Attack(UnitController other)
     {

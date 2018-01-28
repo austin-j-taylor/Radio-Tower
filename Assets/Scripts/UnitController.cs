@@ -40,7 +40,7 @@ public class UnitController : MonoBehaviour {
 	void Update () {
 		    
 	}
-    public UnitController(string unitType, int damageValue, int healthValue, int attackSpeed, int speedValue, int rangeValue) 
+    public UnitController(string unitType, int damageValue, int healthValue, float attackSpeed, float speedValue, float rangeValue) 
     {
         _unitType = unitType;
         _damageValue = damageValue;
