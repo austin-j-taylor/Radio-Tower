@@ -48,7 +48,7 @@ public class UnitController : MonoBehaviour {
 	void Update () {
         EnemyController e = GetClosestEnemy(controller.Enemies);
         _attackSpeed -= Time.deltaTime;
-        if(Vector2.Distance(e.gameObject.transform.position,transform.position) < 10 && gameObject.name == "RadioTowerCollider" && _attackSpeed < 0)
+        if (e != null && Vector2.Distance(e.gameObject.transform.position,transform.position) < 10 && gameObject.name == "RadioTowerCollider" && _attackSpeed < 0)
         {
             Attack(e);
             _attackSpeed = 5f;
