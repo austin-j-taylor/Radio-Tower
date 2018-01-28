@@ -11,7 +11,7 @@ public class GlobalController : MonoBehaviour {
     private Location[] _locations;
     public List<EnemyController> _enemies;
     public List<CivilianController> _friendlies;
-    private GameObject weasel;
+    
     public int Wood {
         get
         {
@@ -250,26 +250,5 @@ public class GlobalController : MonoBehaviour {
     {
         return _locations[_broadcastLocation];
     }
-    public void SpawnEnemy(string title)
-    {
-        switch (title)
-        {
-            case "Supermarket":
-                MonoBehaviour.Instantiate(weasel, new Vector3(-423.5f, 202.6f, 0), Quaternion.identity);
-                Debug.Log("Spawning Supermarket enemy (top left)");
-                break;
-            case "Abandoned Town":
-                MonoBehaviour.Instantiate(weasel, new Vector3(425.5f, 203f, 0), Quaternion.identity);
-                Debug.Log("Spawning town enemy (top right)");
-                break;
-            case "Forest":
-                MonoBehaviour.Instantiate(weasel, new Vector3(424.6f, -194f, 0), Quaternion.identity);
-                Debug.Log("Spawning Forest enemy (bottom right)");
-                break;
-            case "Construction Site":
-                MonoBehaviour.Instantiate(weasel, new Vector3(-425.5f, -194f, 0), Quaternion.identity);
-                Debug.Log("Spawning Construction Site enemy (bottom left)");
-                break;
-        }
-    }
+    
 }
