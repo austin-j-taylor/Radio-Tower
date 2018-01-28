@@ -70,6 +70,7 @@ public class EnemyController : UnitController {
         if (_healthValue <= 0)
         {
             controller.Enemies.Remove(this);
+            Debug.Log(controller.Enemies.Count);
             Destroy(gameObject);
         }
     }
