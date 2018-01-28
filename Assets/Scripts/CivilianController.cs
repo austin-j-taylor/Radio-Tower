@@ -36,9 +36,9 @@ public class CivilianController : UnitController {
             transform.position = Vector2.MoveTowards(transform.position, _spawnPoint, 0.3f);
             if(Vector2.Distance(transform.position, _spawnPoint) < 1f)
             {
-                controller.Friendlies.RemoveAt(_myIndex);
+                controller.Friendlies.RemoveAt(0);
                 Debug.Log(controller.Friendlies.Count);
-                Destroy(gameObject, 1f);
+                Destroy(gameObject);
             }
             else
             {

@@ -164,7 +164,7 @@ public class GlobalController : MonoBehaviour {
                 Debug.Log("Successful roll for new population, roll was " + roll * 100 + " against a " + (.3 + (_locations[_broadcastLocation].ThreatLevel * .7)) * 100 + " percent chance");
                 _numScav++;
                 Debug.Log("Adding scavenger to population count.");
-                _food += 3;
+                _food += 2;
             }
             //standard chance for other civvies
             else if (_locations[_broadcastLocation] != null && _food > 0 && roll <= .3 + (_locations[_broadcastLocation].ThreatLevel * .7) )
@@ -228,7 +228,7 @@ public class GlobalController : MonoBehaviour {
             }
         }
         //default
-        else 
+        else if(locationIndex == 2 || locationIndex == 1)
         {
             _locations[_broadcastLocation].Selected = false;
             _locations[locationIndex].Selected = true;

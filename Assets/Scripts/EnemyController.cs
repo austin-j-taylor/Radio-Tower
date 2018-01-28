@@ -10,6 +10,7 @@ public class EnemyController : UnitController {
         controller = GameObject.FindWithTag("MainCamera").GetComponent<GlobalController>();
         controller.Enemies.Add(this);
         _moving = true;
+        _attackSpeed = 3f;
 	}
 	
 	// Update is called once per frame
