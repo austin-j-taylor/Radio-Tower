@@ -85,7 +85,7 @@ public class Location : MonoBehaviour {
 	// Update is called once per frame
 	public void Update () {
         //Spawns an enemy after a number of seconds based on the threat level when the last enemy was spawned.
-        if (_threatLevel >=.3)
+        if (_threatLevel >=.01)
         {
             _checkTimeEnemy -= Time.deltaTime;
             if(Time.time - _checkTimeEnemy > 0)

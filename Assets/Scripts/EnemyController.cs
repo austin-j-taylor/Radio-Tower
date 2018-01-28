@@ -65,4 +65,12 @@ public class EnemyController : UnitController {
     {
         other.HealthValue = other.HealthValue - _damageValue;
     }
+    protected override void CheckForDeath()
+    {
+        if (_healthValue <= 0)
+        {
+            controller.Enemies.Remove(this);
+            Destroy(gameObject);
+        }
+    }
 }

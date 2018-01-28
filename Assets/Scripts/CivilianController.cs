@@ -32,13 +32,14 @@ public class CivilianController : UnitController {
         if(controller.Enemies.Count == 0)
         {
             transform.position = Vector2.MoveTowards(transform.position, _spawnPoint, 0.3f);
-            if(transform.position.Equals(_spawnPoint))
+            if(Vector2.Distance(transform.position, _spawnPoint) < 1f)
             {
-                Destroy(this, 1f);
+                controller.Friendlies.Remove(this);
+                Destroy(gameObject, 1f);
             }
             else
             {
-                Debug.Log("I am not exactly at my spawn point");
+                Debug.Log("I am not exactly at my spawn point. My spawn point is " + SpawnPoint.x + ", " + SpawnPoint.y + ". I am at " + transform.position.x+", "+transform.position.y);
             }
         }
         else if (_target == null)
@@ -48,7 +49,7 @@ public class CivilianController : UnitController {
         //move towards target until close enough to attack
         else if(Vector2.Distance(_target.transform.position, transform.position) < 10)
         {
-            Vector2.MoveTowards(this.transform.position, this.transform.position, 0f);
+            Vector2.MoveTowards(transform.position, transform.position, 0f);
             if (_attackSpeed <= 0)
             {
                 Attack(_target);
@@ -87,9 +88,17 @@ public class CivilianController : UnitController {
     {
         other.HealthValue = other.HealthValue - _damageValue;
     }
+    protected override void CheckForDeath()
+    {
+        if (_healthValue <= 0)
+        {
+            controller.Friendlies.Remove(this);
+            Destroy(gameObject);
+        }
+    }
 
- //   private void OnCollisionEnter2D(Collision2D collision)
- //   {
- //       EnemyController enemy = collision.gameObject.GetComponent<EnemyController>();
- //  }
+    //   private void OnCollisionEnter2D(Collision2D collision)
+    //   {
+    //       EnemyController enemy = collision.gameObject.GetComponent<EnemyController>();
+    //  }
 }

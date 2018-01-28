@@ -257,13 +257,4 @@ public class GlobalController : MonoBehaviour {
     {
         return _locations[_broadcastLocation];
     }
-    void CleanUpArrays()
-    {
-        foreach (EnemyController e in Enemies)
-        {
-
-        }
-    }
-
-    
 }
