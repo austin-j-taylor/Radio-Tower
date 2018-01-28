@@ -39,6 +39,7 @@ public class UnitController : MonoBehaviour {
     void Start () {
         if(gameObject.name == "RadioTowerCollider")
         {
+            Debug.Log("Collider attack speed set!");
             _attackSpeed = 5f;
         }
         controller = GameObject.FindWithTag("MainCamera").GetComponent<GlobalController>();
@@ -50,6 +51,7 @@ public class UnitController : MonoBehaviour {
         _attackSpeed -= Time.deltaTime;
         if (e != null && Vector2.Distance(e.gameObject.transform.position,transform.position) < 10 && gameObject.name == "RadioTowerCollider" && _attackSpeed < 0)
         {
+            Debug.Log("Found enemy. Laser time.");
             Attack(e);
             _attackSpeed = 5f;
         }

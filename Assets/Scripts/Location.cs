@@ -78,7 +78,7 @@ public class Location : MonoBehaviour {
         _threatDownTick = 20f;
         _threatUpTick = 5f;
         _selected = false;
-        _checkTimeEnemy = 20f;
+        _checkTimeEnemy = 40f;
         weasel = Resources.Load("Weasel", typeof(GameObject)) as GameObject;
         Debug.Log(_title + " initialized. Selection status " + _selected);
     }
@@ -91,7 +91,7 @@ public class Location : MonoBehaviour {
             if(Time.time - _checkTimeEnemy > 0)
             {
                 SpawnEnemy();
-                _checkTimeEnemy = Time.time + Mathf.Lerp(3, 20, 1f - (ThreatLevel - .3f) / .7f);
+                _checkTimeEnemy = Time.time + Mathf.Lerp(3, 40, 1f - (ThreatLevel - .3f) / .7f);
                 Debug.Log(_checkTimeEnemy - Time.time);
             }
         }
