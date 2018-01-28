@@ -4,18 +4,28 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class CRTController : MonoBehaviour {
-
-    //public Button radioTower;
+    
     public GameObject towerOrder;
+    public GameObject barricadeSpawn;
+    public Animator towerOrderAnimator;
+    public Animator barricadeOrderAnimator;
+
+    private Transform[] barricadePositions;
+    private bool isInTower;
+    private bool isInBarricade;
 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         Button[] buttons = GetComponentsInChildren<Button>();
 
-        //radioTower = buttons[0];
-        //radioTower.onClick.AddListener(OpenTowerOrder);
-	}
+        barricadePositions = barricadeSpawn.GetComponentsInChildren<RectTransform>();
+        
+        isInTower = false;
+        isInBarricade = false;
+        towerOrderAnimator.SetBool("IsIn", isInTower);
+        barricadeOrderAnimator.SetBool("IsIn", isInBarricade);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -23,14 +33,32 @@ public class CRTController : MonoBehaviour {
 	}
 
     public void OpenTowerOrder() {
-        towerOrder.SetActive(true);
+        isInTower = true;
+        towerOrderAnimator.SetBool("IsIn", isInTower);
     }
 
     public void CancelTowerOrder() {
-        towerOrder.SetActive(false);
+        isInTower = false;
+        towerOrderAnimator.SetBool("IsIn", isInTower);
     }
 
     public void ExecuteTowerOrder() {
-        towerOrder.SetActive(false);
+        isInTower = false;
+        towerOrderAnimator.SetBool("IsIn", isInTower);
+    }
+
+    public void BuildBarricade(int location) {
+        isInBarricade = true;
+        barricadeOrderAnimator.SetBool("IsIn", isInBarricade);
+    }
+
+    public void CancelBarricadeOrder() {
+        isInBarricade = false;
+        barricadeOrderAnimator.SetBool("IsIn", isInBarricade);
+    }
+
+    public void ExecuteBarricadeOrder() {
+        isInBarricade = false;
+        barricadeOrderAnimator.SetBool("IsIn", isInBarricade);
     }
 }
