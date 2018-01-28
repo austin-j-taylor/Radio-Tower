@@ -10,6 +10,8 @@ public class MacroMapController : MonoBehaviour {
     public Image forestImage;
     public Image constructionImage;
 
+    private AudioSource[] mapSounds;
+
     private Animator anim;
     private LocationButton[] buttons;
     private Image[] threatStickies;
@@ -23,6 +25,7 @@ public class MacroMapController : MonoBehaviour {
         isIn = false;
         anim.SetBool("IsIn", isIn);
         buttons = GetComponentsInChildren<LocationButton>();
+        mapSounds = GetComponents<AudioSource>();
 
         Image[] allImages = GetComponentsInChildren<Image>();
 
@@ -49,6 +52,13 @@ public class MacroMapController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Tab)) {
             isIn = !isIn;
             anim.SetBool("IsIn", isIn);
+
+            if(isIn) {
+                mapSounds[0].Play();
+            } else {
+                mapSounds[1].Play();
+            }
+
         }
         for (int i = 0; i < threatStickies.Length; i++) {
             int threat = (int)(controller.Locations[i + 1].ThreatLevel * 100);

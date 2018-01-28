@@ -15,8 +15,10 @@ public class GlobalController : MonoBehaviour {
 
     public AudioMixer mixer;
 
-    private BGMController musicController;
+    //private BGMController musicController;
+    private SFXController voiceController;
     private AudioMixerSnapshot[] radioSongSnapshots;
+    private AudioSource[] voiceEffects;
 
     //getters, setters
     public int Wood {
@@ -130,7 +132,10 @@ public class GlobalController : MonoBehaviour {
         CreateLocations();
         Debug.Log("Global Controller initialized.");
 
-        musicController = GameObject.FindWithTag("BGMController").GetComponent<BGMController>();
+        //musicController = GameObject.FindWithTag("BGMController").GetComponent<BGMController>();
+        voiceController = GameObject.FindWithTag("SFXController").GetComponent<SFXController>();
+        voiceEffects = voiceController.GetComponents<AudioSource>();
+
         radioSongSnapshots = new AudioMixerSnapshot[7];
         radioSongSnapshots[0] = mixer.FindSnapshot("Overworld");
         radioSongSnapshots[1] = mixer.FindSnapshot("TheGoodOne");
@@ -139,6 +144,7 @@ public class GlobalController : MonoBehaviour {
         radioSongSnapshots[4] = mixer.FindSnapshot("TheBadOne");
         radioSongSnapshots[5] = mixer.FindSnapshot("TitleScreen");
         radioSongSnapshots[6] = mixer.FindSnapshot("Battle");
+
 
     }
 
@@ -230,6 +236,7 @@ public class GlobalController : MonoBehaviour {
             _broadcastLocation = locationIndex;
             // update BGM:
             radioSongSnapshots[_broadcastLocation].TransitionTo(.5f);
+            PlayRadioVoice();
         }
         //if currently selected location is reselected, deselect location
         else if(locationIndex == _broadcastLocation )
@@ -238,6 +245,7 @@ public class GlobalController : MonoBehaviour {
             _broadcastLocation = 0;
             // update BGM:
             radioSongSnapshots[_broadcastLocation].TransitionTo(.5f);
+            PlayRadioVoice();
         }
         //if currently selected location is the construction site or the forest, require extra power
         else if (locationIndex == 3 || locationIndex == 4)
@@ -249,6 +257,7 @@ public class GlobalController : MonoBehaviour {
                 _broadcastLocation = locationIndex;
                 // update BGM:
                 radioSongSnapshots[_broadcastLocation].TransitionTo(.5f);
+                PlayRadioVoice();
             }
         }
         //default
@@ -259,10 +268,26 @@ public class GlobalController : MonoBehaviour {
             _broadcastLocation = locationIndex;
             // update BGM:
             radioSongSnapshots[_broadcastLocation].TransitionTo(.5f);
+            PlayRadioVoice();
         }
 
 
     }
+    private int currentVoice = 0;
+
+    private void PlayRadioVoice() {
+
+        if (Random.value > .9f) {
+
+            voiceEffects[currentVoice].Play();
+
+            currentVoice++;
+            if (currentVoice > 5) {
+                currentVoice = 0;
+            }
+        }
+    }
+
     //add locations to controller object
     void CreateLocations()
     {

@@ -14,7 +14,8 @@ public class TitleScreen : MonoBehaviour {
     }
 
     public void CloseTitle() {
-        Destroy(gameObject);
-        first.TransitionTo(.5f);
+        gameObject.SetActive(false);
+        //Destroy(gameObject);
+        first.TransitionTo(.1f);
     }
 }

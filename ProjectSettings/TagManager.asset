@@ -6,6 +6,8 @@ TagManager:
   tags:
   - LocationController
   - BGMController
+  - Defense
+  - SFXController
   layers:
   - Default
   - TransparentFX
