@@ -16,7 +16,7 @@ public class EnemyController : UnitController {
         _attackSpeed -= Time.deltaTime; 
        if(_healthValue <=0)
        {
-            Destroy(this.gameObject);
+            CheckForDeath();
        }
        else if(_moving)
        {

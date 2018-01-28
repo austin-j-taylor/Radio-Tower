@@ -49,4 +49,11 @@ public class UnitController : MonoBehaviour {
         _speedValue = speedValue;
         _rangeValue = rangeValue;
     }
+    protected void CheckForDeath()
+    {
+        if(_healthValue <= 0 )
+        {
+            Destroy(this);
+        }
+    }
 }
