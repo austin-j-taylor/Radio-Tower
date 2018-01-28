@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-    
-public class CivilianController : UnitController {  
+
+public class CivilianController : UnitController {
     private Vector2 _spawnPoint;
     private EnemyController _target;
+    private int _myIndex;
+    public int MyIndex { get; set; }
     public Vector2 SpawnPoint
     {
         get
@@ -34,9 +36,9 @@ public class CivilianController : UnitController {
             transform.position = Vector2.MoveTowards(transform.position, _spawnPoint, 0.3f);
             if(Vector2.Distance(transform.position, _spawnPoint) < 1f)
             {
-                controller.Friendlies.Remove(this);
+                controller.Friendlies.RemoveAt(_myIndex);
                 Debug.Log(controller.Friendlies.Count);
-                Destroy(gameObject);
+                Destroy(gameObject, 1f);
             }
             else
             {

@@ -55,6 +55,7 @@ public class CivSpawnButton : MonoBehaviour {
             }
             
             controller.Friendlies.Add(civilian.GetComponent<CivilianController>());
+            civilian.GetComponent<CivilianController>().MyIndex = controller.Friendlies.IndexOf(civilian.GetComponent<CivilianController>());
         } 
         else
         {
