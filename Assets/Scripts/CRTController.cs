@@ -23,7 +23,6 @@ public class CRTController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        Button[] buttons = GetComponentsInChildren<Button>();
         RectTransform[] allTransforms = barricadeSpawn.GetComponentsInChildren<RectTransform>();
         barricadePositions = new RectTransform[16];
 
@@ -70,7 +69,7 @@ public class CRTController : MonoBehaviour {
         currentlyBuilding = location;
 
         // do resource check, grey out box or un grey out box
-        if (controller.Wood >= 15) {
+        if (controller.Wood >= 15 || true) {
             barricadeButton.interactable = true;
         } else {
             barricadeButton.interactable = false;
@@ -88,7 +87,7 @@ public class CRTController : MonoBehaviour {
         barricadeOrderAnimator.SetBool("IsIn", isInBarricade);
 
         controller.Wood = controller.Wood - 15;
-        GameObject newBarricade = Instantiate(barricade, barricadePositions[currentlyBuilding].position, Quaternion.identity);
+        GameObject newBarricade = Instantiate(barricade, barricadePositions[currentlyBuilding]);
 
         newBarricade.transform.SetParent(barricadesCanvas.transform, true);
         newBarricade.transform.position = barricadePositions[currentlyBuilding].position;
