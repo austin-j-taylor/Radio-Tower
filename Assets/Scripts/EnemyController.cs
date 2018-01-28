@@ -9,7 +9,10 @@ public class EnemyController : UnitController {
         controller = GameObject.FindWithTag("MainCamera").GetComponent<GlobalController>();
         controller.Enemies.Add(this);
         _attackSpeed = 3f;
-	}
+        Vector3 dir = transform.position;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -23,8 +26,10 @@ public class EnemyController : UnitController {
             Vector2.MoveTowards(transform.position, transform.position, 0f);
             if (_attackSpeed < 0)
             {
-                Vector3 targetPostition = new Vector3(_obstacle.transform.position.x, _obstacle.transform.position.y, transform.position.z);
-                this.transform.LookAt(targetPostition);
+                Vector3 dir = transform.position-_obstacle.transform.position;
+                float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                Quaternion targetrotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetrotation, Time.deltaTime);
                 Attack(_obstacle);
                 _attackSpeed = 3f;
                 Debug.Log("I have attacked something! Its remaining health is " + _obstacle.HealthValue);
@@ -32,8 +37,11 @@ public class EnemyController : UnitController {
         }
         else
         {
-            
-            transform.LookAt(new Vector3(0, 0, transform.position.z));
+
+            Vector3 dir = transform.position;
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            Quaternion targetrotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetrotation, Time.deltaTime);
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(0,0), _speedValue);
         }
        
@@ -62,7 +70,7 @@ public class EnemyController : UnitController {
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.name.Contains("Barricade"))
+        if (collision.gameObject.name.Contains("Barricade") || collision.gameObject.name.Contains("RadioTowerCollider"))
         {
             _obstacle = collision.gameObject.GetComponent<UnitController>();
         }
