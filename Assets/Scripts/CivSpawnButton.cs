@@ -27,26 +27,30 @@ public class CivSpawnButton : MonoBehaviour {
             {
                 GameObject newCiv = Instantiate(civilian, new Vector3(0, -17, 0), Quaternion.identity);
                 newCiv.transform.parent = GameObject.Find("MicroMap").transform;
+                newCiv.GetComponent<CivilianController>().SpawnPoint = new Vector2(0, -17);
                 //newCiv.transform.position = new Vector3(transform.position.x, transform.position.y - 10, 0);
-                
+
             }
             else if(transform.position.y > 0)
             {
                 GameObject newCiv = Instantiate(civilian, new Vector3(0, 17, 0), Quaternion.identity);
                 newCiv.transform.parent = GameObject.Find("MicroMap").transform;
+                newCiv.GetComponent<CivilianController>().SpawnPoint = new Vector2(0, 17);
                 //newCiv.transform.position = new Vector3(transform.position.x, transform.position.y + 10, 0);
-                
+
             }
             else if(transform.position.x < 0)
             {
                 GameObject newCiv = Instantiate(civilian, new Vector3(-30, 0, 0), Quaternion.identity);
                 newCiv.transform.parent = GameObject.Find("MicroMap").transform;
+                newCiv.GetComponent<CivilianController>().SpawnPoint = new Vector2(-30, 0);
                 //newCiv.transform.position = new Vector3(transform.position.x, transform.position.x - 10, 0);
             }
             else
             {
                 GameObject newCiv = Instantiate(civilian, new Vector3(30, 0, 0), Quaternion.identity);
                 newCiv.transform.parent = GameObject.Find("MicroMap").transform;
+                newCiv.GetComponent<CivilianController>().SpawnPoint = new Vector2(30, 0);
                 //newCiv.transform.position = new Vector3(transform.position.x, transform.position.x + 10, 0);
             }
             

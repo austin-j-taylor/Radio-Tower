@@ -2,11 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
     
-public class CivilianController : UnitController {
+public class CivilianController : UnitController {  
     private Vector2 _spawnPoint;
     private EnemyController _target;
+    public Vector2 SpawnPoint
+    {
+        get
+        {
+            return _spawnPoint;
+        }
+        set
+        {
+            _spawnPoint = value;
+        }
+    }
     // Use this for initialization
     void Start () {
+        _spawnPoint = transform.position;
+        controller = GameObject.FindWithTag("MainCamera").GetComponent<GlobalController>();
         _target = GetClosestEnemy(controller.Enemies);
         _attackSpeed = 3f;
 
@@ -22,6 +35,10 @@ public class CivilianController : UnitController {
             if(transform.position.Equals(_spawnPoint))
             {
                 Destroy(this, 1f);
+            }
+            else
+            {
+                Debug.Log("I am not exactly at my spawn point");
             }
         }
         else if (_target == null)
@@ -55,11 +72,13 @@ public class CivilianController : UnitController {
         Vector2 currentpos = transform.position;
         foreach (EnemyController e in enemies)
         {
-            float dist = Vector2.Distance(e.transform.position, currentpos);
-            if (dist < minDist)
-            {
-                closest = e;
-                minDist = dist;
+            if (e != null) { 
+                float dist = Vector2.Distance(e.transform.position, currentpos);
+                if (dist < minDist)
+                {
+                    closest = e;
+                    minDist = dist;
+                }
             }
         }
         return closest;

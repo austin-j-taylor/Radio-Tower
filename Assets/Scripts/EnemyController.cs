@@ -57,7 +57,7 @@ public class EnemyController : UnitController {
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        obstacle = collision.gameObject.GetComponent<UnitController>();
+        _obstacle = collision.gameObject.GetComponent<UnitController>();
         _moving = false;
         
     }
