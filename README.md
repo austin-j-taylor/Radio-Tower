@@ -1,3 +1,6 @@
 # Radio-Tower
-Created for the 2018 Global Game Jam
+Created for the 2018 Global Game Jam.
+
+From the description:
+
 It’s the year 3 AA. A nuclear apocalypse has cleared the world of all intelligent life except for a handful of humans and radiated super-weasels. Some lucky people have formed a small government in a safe citadel, however, you are not one of those people. You find yourself stranded in a broken down radio tower. After some haphazard repairs, you’ve gotten the radio tower working again, but you’ll need help to get the transmission strong enough to reach the new government and send your distress signal. Broadcast to nearby survivors with the tower to build up your base, but be warned, those signals will also attract the weasel menace! Manage your radio signal to attract different kinds of survivors to your base. You’ll need to balance your resources to build defenses, keep the population fed, and upgrade the tower. Press Tab to open up the world map, and control where you’re broadcasting. The tower will automatically shoot weasels, and you can build additional barricades to slow them down. At 10 total survivors, you can build a soldier on the defense map to help the tower. At 50 power you unlock the Forest and the Construction Site. You need 1 food for 1 person, so keep your food stock up. Once you upgrade the tower, you win! Your goal is to win as quickly as possible, otherwise you’ll be overrun!
